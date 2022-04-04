@@ -1,0 +1,11 @@
+﻿@model LoginBarInfo
+
+@if (Model.IsLoggedIn)
+{
+    <p>@Model.Username <a asp-controller="Account" asp-action="Logout">(Logout)</a></p>
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login">Login</a>
+}
+
