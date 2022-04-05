@@ -1,1 +1,7 @@
-﻿<h1>SEARCH</h1>
+﻿@model IQueryable<Accident>
+
+<h1>SEARCH</h1>
+@foreach (var a in Model)
+{
+    <p><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_ID</a> @a.Crash_Severity_Id @a.City, @a.County_Name</p>
+}

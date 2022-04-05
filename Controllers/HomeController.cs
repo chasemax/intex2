@@ -21,16 +21,24 @@ namespace Intex2.Controllers
 
         public IActionResult Index()
         {
-            Accident model = repo.Accidents.First();
-            return View(model);
+            return View();
         }
 
         public IActionResult Search()
         {
-            return View();
+            var accident = repo.Accidents;
+            return View(accident);
         }
 
-        public IActionResult Accidents()
+        public IActionResult Accident(int id)
+        {
+            Accident accident = repo.Accidents
+                .Single(x => x.Crash_ID == id);
+
+            return View(accident);
+        }
+
+        public IActionResult Severity()
         {
             return View();
         }

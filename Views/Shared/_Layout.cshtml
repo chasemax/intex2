@@ -9,24 +9,30 @@
 </head>
 <body>
 
-    <vc:login></vc:login>
+    <div class="row m-0 p-0">
+        <div style="padding-top:10px;padding-bottom:15px;">
+            <div style="font-size:60px;color:black;padding-top:5px;padding-left:14%;float:left;">
+                <b><a asp-controller="Home" asp-action="Index">Intex Project</a></b>
+            </div>
+            <div style="padding-top: 45px; text-align: right;padding-right:14%;float:right;">
+                <ul id="menu">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="Search">Accident Search</a></li>
+                    <li><a asp-controller="Home" asp-action="Severity">Severity Calculator</a></li>
+                    <li><vc:login></vc:login></li>
+                </ul>
+            </div>
+        </div>
+        <div style="padding-left: 10%; padding-right: 10%;">
+            <hr style="color:black;background-color:black;border-width:0;height:2px;" />
+        </div>
+    </div>
 
-    <header>
-        <a asp-controller="Home" asp-action="Index"><img src="~/img/Car_Crash_Icon.png"></a>
-        <nav>
-            <ul>
-                <li><a asp-controller="Home" asp-action="Index">Home</a>
-                <li><a asp-controller="Home" asp-action="Signup">Search the Database</a>
-            </ul>
-        </nav>
-    </header>
+        @RenderBody()
 
-
-    @RenderBody()
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
 </body>
 </html>
