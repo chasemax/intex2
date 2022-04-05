@@ -8,9 +8,18 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    
+    <header>
+        <a asp-controller="Home" asp-action="Index"><img src="~/img/Car_Crash_Icon.png"></a>
+        <nav>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a>
+                <li><a asp-controller="Home" asp-action="Signup">Search the Database</a>
+            </ul>
+        </nav>
+    </header>
+
     @RenderBody()
-        
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
