@@ -135,36 +135,36 @@ a:hover {
 
 
 /*Table*/
-table {
+table#main {
     width: 90%;
     padding-left: 5px;
     padding-right: 10%;
 }
 
-thead tr {
+thead#main tr {
     font-size: 20px;
     height: 50px;
     background-color: lightgray;
 }
 
-thead tr th {
+thead#main tr th {
     font-weight:normal;
     padding-left:10px;
     padding-right:10px;
 }
 
-tbody tr {
+tbody#main tr {
     height:50px;
     font-size:18px;
     border-bottom:1px solid gray;
 }
 
-    tbody tr:hover {
+    tbody#main tr:hover {
         background-color: rgba(211, 208, 208, 0.52);
         cursor: pointer;
     }
 
-tbody tr td {
+tbody#main tr td {
     padding-left:10px;
     padding-right:10px;
 }
@@ -193,7 +193,7 @@ tbody tr td {
     height: 2px;
 }
 
-/*Search*/
+/*Filter*/
 .filter-col {
     padding-left: 5%;
     padding-right: 10px;
@@ -202,4 +202,36 @@ tbody tr td {
 .list-col {
     padding-left: 5px;
     padding-right: 5%
+}
+
+.filter-table-div {
+    overflow-y: auto;
+    height: 100px;
+}
+
+.filter-table-table {
+    border-collapse: collapse;
+    width: 100%;
+    border-top: 1px solid gray;
+}
+
+.filter-table-thead {
+    position: sticky;
+    top: 0px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.filter-table-trthead {
+    height: 20px;
+    background-color:lightgray;
+}
+
+.filter-table-trtbody {
+    height: 20px;
+}
+
+filter-table-thtd {
+    padding-left: 10px;
+    font-size: 18px;
 }

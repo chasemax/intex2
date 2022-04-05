@@ -103,8 +103,8 @@ namespace Intex2
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "city",
-                    pattern: "City{city}/County{county}",
+                    name: "filter",
+                    pattern: "{county}&{city}",
                     defaults: new { Controller = "Home", Action = "Search" });
 
                 endpoints.MapRazorPages();
