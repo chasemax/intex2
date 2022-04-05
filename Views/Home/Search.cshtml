@@ -1,70 +1,71 @@
 ﻿@model IQueryable<Accident>
 
-<h1>SEARCH</h1>
-
 <div class="row m-0 p-0">
     <div class="col-3 filter-col">
         <h2>Filtering</h2>
-        @*<div style="overflow-y:auto;height:100px;">
-            <table style="border-collapse:collapse;width:100%;border-top:1px solid gray;">
-                <thead style="position:sticky;top:0px;border-top:1px solid gray;border-bottom:1px solid gray;">
-                    <tr style="height:20px;">
-                        <th style="padding-left:10px;font-size:18px;">City</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in ViewBag.City)
-                    {
-                        <tr style="height:15px;">
-                            <td style="font-size: 12px;"><a asp-controller="Home" asp-action="Search" asp-route-city="@c">@c</a></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div style="overflow-y:auto;height:100px;">
-            <table style="border-collapse:collapse;width:100%;border-top:1px solid gray;">
-                <thead style="position:sticky;top:0px;border-top:1px solid gray;border-bottom:1px solid gray;">
-                    <tr style="height:20px;">
-                        <th style="padding-left:10px;font-size:18px;">County</th>
+        <div class="filter-table-div">
+            <table class="filter-table-table">
+                <thead class="filter-table-thead">
+                    <tr class="filter-table-trthead">
+                        <th class="filter-table-th">County</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var c in ViewBag.County)
                     {
-                        <tr style="height:15px;">
-                            <td style="font-size: 12px;"><a asp-controller="Home" asp-action="Search" asp-route-county="@c">@c</a></td>
+                        <tr class="filter-table-trtbody">
+                            <td class="filter-table-th"><a asp-controller="Home" asp-action="Search" asp-route-county="@c">@c</a></td>
                         </tr>
                     }
                 </tbody>
             </table>
-        </div>*@
-    </div>
-    <div class="col m-0 p-0 list-col">
-        <table>
-            <thead>
-                <tr>
-                    <th>Crash ID</th>
-                    <th>Main Road Name</th>
-                    <th>City</th>
-                    <th>County</th>
-                    <th>Crash Date and Time</th>
-                    <th>Severity (1-5)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var a in Model)
-                {
-                <tr onclick="window.location ='./Accident/@a.Crash_ID'">
-                    <td>@a.Crash_ID</td>
-                    <td>@a.Main_Road_Name</td>
-                    <td>@a.City</td>
-                    <td>@a.County_Name</td>
-                    <td>@a.Crash_DT</td>
-                    <td>@a.Crash_Severity_Id</td>
-                </tr>
-                }
+        </div>
+
+        <br />
+
+        <div class="filter-table-div">
+            <table class="filter-table-table">
+                <thead class="filter-table-thead">
+                    <tr class="filter-table-trthead">
+                        <th class="filter-table-th">City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in ViewBag.City)
+                    {
+                        <tr class="filter-table-trtbody">
+                            <td class="filter-table-th"><a asp-controller="Home" asp-action="Search" asp-route-city="@c">@c</a></td>
+                        </tr>
+                    }
                 </tbody>
-        </table>
+            </table>
+        </div>
+        </div>
+        <div class="col m-0 p-0 list-col">
+            <table id="main">
+                <thead id="main">
+                    <tr>
+                        <th>Crash ID</th>
+                        <th>Main Road Name</th>
+                        <th>City</th>
+                        <th>County</th>
+                        <th>Crash Date and Time</th>
+                        <th>Severity (1-5)</th>
+                    </tr>
+                </thead>
+                <tbody id="main">
+                    @foreach (var a in Model)
+                    {
+                        <tr onclick="window.location ='./Accident/@a.Crash_ID'">
+                            <td>@a.Crash_ID</td>
+                            <td>@a.Main_Road_Name</td>
+                            <td>@a.City</td>
+                            <td>@a.County_Name</td>
+                            <td>@a.Crash_DT</td>
+                            <td>@a.Crash_Severity_Id</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
