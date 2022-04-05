@@ -1,11 +1,8 @@
 ﻿@model LoginModel
 
-<div>
-    <img src="@ViewBag.BarcodeImageUrl" />
-</div>
-<div>
-    Manual Setup Code : @ViewBag.SetupCode
-</div>
+<h1>2-Factor Authentication (TOTP)</h1>
+<h3>With Google Authenticator</h3>
+
 <div>
     <div asp-validation-summary="All"></div>
     @using (Html.BeginForm("Verify2FA", "Account", FormMethod.Post))
@@ -16,4 +13,11 @@
         <input type="hidden" name="password" value="@Model.Password" />
         <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
     }
+</div>
+<h3>Remove this piece when finished with development</h3>
+<div>
+    <img src="@ViewBag.BarcodeImageUrl" />
+</div>
+<div>
+    Manual Setup Code : @ViewBag.SetupCode
 </div>

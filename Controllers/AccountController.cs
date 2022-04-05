@@ -42,13 +42,20 @@ namespace Intex2.Controllers
 
                     if ((await _sim.PasswordSignInAsync(user, lm.Password, false, false)).Succeeded)
                     {
-                        TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
-                        var setupInfo = tfa.GenerateSetupCode("Authenticate", user.UserName, Encoding.ASCII.GetBytes(user.UserName));
-                        ViewBag.BarcodeImageUrl = setupInfo.QrCodeSetupImageUrl;
-                        ViewBag.SetupCode = setupInfo.ManualEntryKey;
-                        await _sim.SignOutAsync();
+                        if (user.TwoFactorEnabled)
+                        {
+                            TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
+                            var setupInfo = tfa.GenerateSetupCode("Authenticate", user.UserName, Encoding.ASCII.GetBytes(user.UserName));
+                            ViewBag.BarcodeImageUrl = setupInfo.QrCodeSetupImageUrl;
+                            ViewBag.SetupCode = setupInfo.ManualEntryKey;
+                            await _sim.SignOutAsync();
 
-                        return View("Verify2FA", lm);
+                            return View("Verify2FA", lm);
+                        }
+                        else
+                        {
+                            return Redirect(lm?.ReturnUrl ?? "/home/index");
+                        }
                     }
                 }
             }
