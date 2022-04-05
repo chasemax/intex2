@@ -11,17 +11,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace Intex2
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            CurrentEnvironment = env;
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,7 +33,15 @@ namespace Intex2
 
             services.AddDbContext<AccidentDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:AccidentDBConnection"]);
+                if (CurrentEnvironment.IsDevelopment())
+                {
+                    options.UseMySql(Configuration["ConnectionStrings:AccidentDBConnectionDev"]);
+                }
+                else
+                {
+                    //ConfigurationManager.ConnectionStrings["IdentityDBConnectionProd"].ConnectionString;
+                    options.UseMySql(Configuration["ConnectionStrings:AccidentDBConnectionProd"]);
+                }
             });
 
             services.AddScoped<IAccidentRepo, EFAccidentRepo>();
@@ -40,7 +51,16 @@ namespace Intex2
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
 
             services.AddDbContext<AppIdentityDbContext>(options =>
-                options.UseMySql(Configuration["ConnectionStrings:IdentityDbConnection"]));
+            {
+                if (CurrentEnvironment.IsDevelopment())
+                {
+                    options.UseMySql(Configuration["ConnectionStrings:IdentityDbConnectionDev"]);
+                }
+                else
+                {
+                    options.UseMySql(Configuration["ConnectionStrings:IdentityDbConnectionProd"]);
+                }
+            });
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
 
@@ -69,6 +89,12 @@ namespace Intex2
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';");
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
