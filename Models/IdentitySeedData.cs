@@ -13,6 +13,8 @@ namespace Intex2.Models
     {
         private const string adminUser = "Admin";
         private const string adminPassword = "Admin123!";
+        private const string mfaUser = "mfauser";
+        private const string mfaPassword = "MFApass123!";
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
             AppIdentityDbContext context = app.ApplicationServices
@@ -26,14 +28,26 @@ namespace Intex2.Models
                 app.ApplicationServices
                 .CreateScope().ServiceProvider
                 .GetRequiredService<UserManager<IdentityUser>>();
+
             IdentityUser user = await userManager.FindByIdAsync(adminUser);
             if (user == null)
             {
-                user = new IdentityUser("Admin");
+                user = new IdentityUser(adminUser);
                 user.Email = "admin@example.com";
                 user.PhoneNumber = "555-1234";
                 await userManager.CreateAsync(user, adminPassword);
             }
+
+            IdentityUser user2 = await userManager.FindByIdAsync(mfaUser);
+            if (user2 == null)
+            {
+                user2 = new IdentityUser(mfaUser);
+                user2.Email = "maxfield.chase@gmail.com";
+                user2.PhoneNumber = "333-1234";
+                user2.TwoFactorEnabled = true;
+                await userManager.CreateAsync(user2, mfaPassword);
+            }
+
         }
     }
 }
