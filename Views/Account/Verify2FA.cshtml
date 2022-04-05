@@ -1,0 +1,19 @@
+﻿@model LoginModel
+
+<div>
+    <img src="@ViewBag.BarcodeImageUrl" />
+</div>
+<div>
+    Manual Setup Code : @ViewBag.SetupCode
+</div>
+<div>
+    <div asp-validation-summary="All"></div>
+    @using (Html.BeginForm("Verify2FA", "Account", FormMethod.Post))
+    {
+        <input type="text" name="passcode" />
+        <input type="submit" class="btn btn-success" />
+        <input type="hidden" name="username" value="@Model.Username" />
+        <input type="hidden" name="password" value="@Model.Password" />
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+    }
+</div>

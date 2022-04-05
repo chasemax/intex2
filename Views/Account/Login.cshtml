@@ -1,4 +1,5 @@
 ﻿@model LoginModel
+<div asp-validation-summary="All"></div>
 
 <form method="post" asp-controller="Account" asp-action="Login">
     <label asp-for="Username">Username:</label> <input asp-for="Username" />
