@@ -1,6 +1,58 @@
-﻿@model Accident
+﻿@{
+    Layout = null;
+}
+@model Accident
 
-<h1>INDEX</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
 
-<p>@Model.Crash_ID</p>
-<p>@Model.Crash_DT</p>
+    <div class="row m-0 p-0">
+        @*<div class="col" style="font-size:60px;color:white;padding-top:5px;margin-left:10%;">
+            <b>Intex Project</b>
+        </div>
+        <div class="col">
+            <ul id="menu" style="padding-top: 50px; text-align: right;margin-right:10%;">
+                <li><a>Home</a></li>
+                <li><a>Accident Search</a></li>
+                <li><a>Severity Calculator</a></li>
+            </ul>
+        </div>*@
+
+        <div style="padding-top:10px;padding-bottom:15px;">
+            <div style="font-size:60px;color:white;padding-top:5px;padding-left:14%;float:left;">
+                <b>Intex Project</b>
+            </div>
+            <div style="padding-top: 45px; text-align: right;padding-right:14%;float:right;">
+                <ul id="menu">
+                    <li><a>Home</a></li>
+                    <li><a>Accident Search</a></li>
+                    <li><a>Severity Calculator</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row" style="color:black;padding-left:15%;padding-right:15%;">
+            <div class="col text-center" style="background-color:rgba(255, 255, 255, 0.75);">
+                <h1>This is a sample block of text</h1>
+                <p>This is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of text</p>
+                <p>This is a sample block of textThis is a sample block of text</p>
+                <p>This is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of text</p>
+                <p>This is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of text</p>
+                <p>This is a sample block of textThis is a sample block of textThis is a sample block of textThis is a sample block of text</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

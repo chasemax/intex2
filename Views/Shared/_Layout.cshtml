@@ -8,7 +8,19 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+
     <vc:login></vc:login>
+
+    <header>
+        <a asp-controller="Home" asp-action="Index"><img src="~/img/Car_Crash_Icon.png"></a>
+        <nav>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a>
+                <li><a asp-controller="Home" asp-action="Signup">Search the Database</a>
+            </ul>
+        </nav>
+    </header>
+
 
     @RenderBody()
 
