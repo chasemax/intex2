@@ -79,16 +79,34 @@ body {
     background-size: cover;
 }
 
-/*.custom-li {
-    margin: 20px;
-    display: inline;
+/*Navbar*/
+.padding-tb {
+    padding-top:10px;
+    padding-bottom:15px;
 }
 
-.custom-li a {
+.navmain-index {
+    font-size: 60px;
     color: white;
-    text-decoration: none;
-    font-size: larger;
-}*/
+    padding-top: 5px;
+    padding-left: 14%;
+    float: left;
+}
+
+.navmain-layout {
+    font-size: 60px;
+    color: black;
+    padding-top: 5px;
+    padding-left: 14%;
+    float: left;
+}
+
+.navitems {
+    padding-top: 45px;
+    text-align: right;
+    padding-right: 14%;
+    float: right;
+}
 
 ul#index li {
     display: inline;
@@ -113,4 +131,75 @@ a {
 
 a:hover {
     color:inherit;
+}
+
+
+/*Table*/
+table {
+    width: 90%;
+    padding-left: 5px;
+    padding-right: 10%;
+}
+
+thead tr {
+    font-size: 20px;
+    height: 50px;
+    background-color: lightgray;
+}
+
+thead tr th {
+    font-weight:normal;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+tbody tr {
+    height:50px;
+    font-size:18px;
+    border-bottom:1px solid gray;
+}
+
+    tbody tr:hover {
+        background-color: rgba(211, 208, 208, 0.52);
+        cursor: pointer;
+    }
+
+tbody tr td {
+    padding-left:10px;
+    padding-right:10px;
+}
+
+/*Index*/
+.text-body-row {
+    color: black;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.text-body-column {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+/*Layout*/
+.line-div {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.line-hr {
+    color: black;
+    background-color: black;
+    border-width: 0;
+    height: 2px;
+}
+
+/*Search*/
+.filter-col {
+    padding-left: 5%;
+    padding-right: 10px;
+}
+
+.list-col {
+    padding-left: 5px;
+    padding-right: 5%
 }
