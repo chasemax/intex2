@@ -65,6 +65,12 @@ namespace Intex2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "city",
+                    pattern: "City{city}/County{county}",
+                    defaults: new { Controller = "Home", Action = "Search" });
+
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/admin/index");
