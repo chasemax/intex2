@@ -15,6 +15,11 @@ namespace Intex2.Models
 
         public void AddAccident(Accident a)
         {
+            int maxId = _adbc.Accidents.Select(x => x.Crash_ID).Max();
+            a.Crash_ID = maxId + 1;
+            a.City = a.City.ToUpper();
+            a.County_Name = a.County_Name.ToUpper();
+            a.Main_Road_Name = a.Main_Road_Name.ToUpper();
             _adbc.Add(a);
             _adbc.SaveChanges();
         }

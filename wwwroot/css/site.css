@@ -236,3 +236,13 @@ filter-table-thtd {
     padding-left: 10px;
     font-size: 18px;
 }
+
+/*-----------------VALIDATION MESSAGE STYLES-----------------*/
+
+.validation-message {
+    color: darkred;
+}
+
+.validation-errors {
+    list-style-type: none;
+}

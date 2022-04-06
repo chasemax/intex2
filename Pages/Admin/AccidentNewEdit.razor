@@ -1,0 +1,412 @@
+﻿@page "/admin/new-accident"
+@page "/admin/edit-accident/{id:int}"
+
+@inherits OwningComponentBase<IAccidentRepo>
+
+<div class="row">
+    <div class="col text-center">
+        <h1>@pageTitle</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @(classActivated ? "" : "active")" id="details-tab" type="button" @onclick="ShowDetailTab">Accident Details</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link @(classActivated ? "active" : "")" id="classification-tab" type="button" @onclick="ShowClassificationTab">Accident Classification</button>
+            </li>
+        </ul>
+
+        <div class="tab-content p-3" id="myTabContent">
+            <div class="tab-pane @(classActivated ? "" : "show active")" id="details" role="tabpanel">
+                <div class="row">
+                    <div class="col">
+                        <div class="row my-3">
+                            <div class="col-6">
+                                <label>Main Road:</label>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" @bind-value="@accident.Main_Road_Name" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label>County:</label>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" @bind-value="@accident.County_Name" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label>City:</label>
+                            </div>
+                            <div class="col-6">
+                                <input class="form-control" @bind-value="@accident.City" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-2">
+                                <label>Date:</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="date" class="form-control" />
+                            </div>
+                            <div class="col-2">
+                                <label>Time:</label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-2">
+                                <label>Route #:</label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" @bind-value="@accident.Route" />
+                            </div>
+                            <div class="col-2">
+                                <label>Milepoint:</label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" @bind-value="@accident.MilePoint" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-2">
+                                <label>Latitude:</label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" @bind-value="@accident.Latitude" />
+                            </div>
+                            <div class="col-2">
+                                <label>Longitude:</label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" @bind-value="@accident.Longitude" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6 text-start">
+                                <button class="btn btn-outline-danger" @onclick="Cancel">Cancel</button>
+                            </div>
+                            <div class="col-6 text-end">
+                                <button class="btn btn-primary" @onclick="ShowClassificationTab">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane @(classActivated ? "show active" : "")" id="classification" role="tabpanel">
+                <div class="row">
+                    <div class="col">
+                        <div class="row my-3">
+                            <div class="col-4">
+                                Accident Severity: @accident.Crash_Severity_Id
+                            </div>
+                            <div class="col-8">
+
+                                <input type="range" class="form-range" min="1" max="5" step="1" @bind-value="accident.Crash_Severity_Id" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Work Zone Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Work_Zone_Related" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Pedestrian Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Pedestrian_Involved" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Bicyclist Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Bicyclist_Involved" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Motorcycle Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Motorcycle_Involved" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Improper Restraint</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Improper_Restraint" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Unrestrained</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Unrestrained" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>DUI</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.DUI" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Intersection Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Intersection_Related" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Wild Animal Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Wild_Animal_Related" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Domestic Animal Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Domestic_Animal_Related" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Overturn / Rollover</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Overturn_Rollover" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Comm. Vehicle Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Commercial_Motor_Veh_Involved" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Teenage Driver Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Teenage_Driver_Involved" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Older Driver Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Older_Driver_Involved" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Night / Dark Conditions</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Night_Dark_Condition" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Single Vehicle Collision</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Single_Vehicle" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Distracted Driving</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Distracted_Driving" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Drowsy Driving</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Drowsy_Driving" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Roadway Departure</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <EditForm Model="accident">
+                                        <InputCheckbox class="form-check-input" @bind-Value="accident.Roadway_Departure" />
+                                    </EditForm>
+                                </div>
+                            </div>
+                            <div class="col-6"></div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6 text-start">
+                                <button class="btn btn-outline-primary" @onclick="ShowDetailTab">Back</button>
+                            </div>
+                            <div class="col-6 text-end">
+                                <button type="submit" class="btn btn-success" form="validator-form">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <EditForm Model="accident" OnValidSubmit="SaveAccident" id="validator-form">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+        </EditForm>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+
+@code {
+    public IAccidentRepo repo => Service;
+
+    public Accident accident { get; set; } = new Accident();
+
+    public bool classActivated { get; set; } = false;
+
+    public string pageTitle { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0) {
+            accident = repo.Accidents.FirstOrDefault(x => x.Crash_ID == Id);
+            pageTitle = "Editing Accident #" + accident.Crash_ID.ToString();
+        }
+        else
+        {
+            accident.Crash_Severity_Id = 1;
+            pageTitle = "New Accident";
+        }
+    }
+
+    public EventCallback<EditContext> OnSubmit { get; private set; }
+
+    public void ShowClassificationTab()
+    {
+        classActivated = true;
+    }
+
+    public void ShowDetailTab()
+    {
+        classActivated = false;
+    }
+
+    public void SaveAccident()
+    {
+        if (Id == 0)
+        {
+            repo.AddAccident(accident);
+        }
+        else
+        {
+            repo.UpdateAccident(accident);
+        }
+
+        NavManager.NavigateTo("/admin");
+    }
+
+    public void Cancel()
+    {
+        NavManager.NavigateTo("/admin");
+    }
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+}
