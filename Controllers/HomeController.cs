@@ -49,7 +49,7 @@ namespace Intex2.Controllers
 
             IEnumerable<string> counties = allAccidents.Select(x => x.County_Name).Distinct().ToList().Append("All").OrderBy(x => x);
             IEnumerable<string> cities = allAccidents.Select(x => x.City).Distinct().ToList().Append("All").OrderBy(x => x);
-            IEnumerable<string> severities = allAccidents.Select(x => x.Crash_Severity_Id.ToString()).Distinct().ToList().Append("All").OrderBy(x => x);
+            IEnumerable<string> severities = allAccidents.Select(x => x.Crash_Severity_Id.ToString()).Distinct().ToList().Append("All").OrderByDescending(x => x);
 
             var cityFilterQueries = new List<KeyValuePair<string, Dictionary<string, string>>>();
             var countyFilterQueries = new List<KeyValuePair<string, Dictionary<string, string>>>();
@@ -95,7 +95,7 @@ namespace Intex2.Controllers
 
             var pageInfo = new PageInfo
             {
-                TotalNumCrashes = accidents.Count(),
+                TotalNumCrashes = allAccidents.Count(),
                 CrashesPerPage = pageSize,
                 CurrentPage = pageNum,
                 CityFilterQueries = cityFilterQueries,

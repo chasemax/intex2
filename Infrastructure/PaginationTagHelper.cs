@@ -72,7 +72,7 @@ namespace Intex2.Infrastructure
 
             final.InnerHtml.AppendHtml(first);
 
-            for (int i = (PageModel.CurrentPage - 1); i <= (PageModel.CurrentPage + 1); i++)
+            for (int i = (PageModel.CurrentPage - 2); i <= (PageModel.CurrentPage + 2); i++)
             {
                 while (i <= 0)
                 {
