@@ -1,97 +1,98 @@
 ﻿@model AccidentsViewModel
 
-<div class="row m-0 p-0">
-    <div class="col-3 filter-col">
-        <h2>Filtering</h2>
-        <div class="filter-table-div">
-            <table class="filter-table-table">
-                <thead class="filter-table-thead">
-                    <tr class="filter-table-trthead">
-                        <th class="filter-table-th">County</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in ViewBag.County)
-                    {
-                        <tr class="filter-table-trtbody">
-                            <td class="filter-table-th"><a asp-controller="Home" asp-action="Search" asp-route-county="@c">@c</a></td>
+<div class="container-fluid">
+    <div class="row m-0 p-0">
+        <div class="col-3 m-0 p-0 filter-col">
+            <h2>Filtering</h2>
+            <div class="filter-table-div">
+                <table class="filter-table-table">
+                    <thead class="filter-table-thead">
+                        <tr class="filter-table-trthead">
+                            <th class="filter-table-th">County</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-
-        <br />
-
-        <div class="filter-table-div">
-            <table class="filter-table-table">
-                <thead class="filter-table-thead">
-                    <tr class="filter-table-trthead">
-                        <th class="filter-table-th">City</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in ViewBag.City)
-                    {
-                        <tr class="filter-table-trtbody">
-                            <td class="filter-table-th"><a asp-controller="Home" asp-action="Search" asp-route-city="@c">@c</a></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        </div>
-    <div class="col m-0 p-0 list-col">
-        @*<table id="main">
-            <thead id="main">
-                <tr>
-                    <th>Crash ID</th>
-                    <th>Main Road Name</th>
-                    <th>City</th>
-                    <th>County</th>
-                    <th>Crash Date and Time</th>
-                    <th>Severity (1-5)</th>
-                </tr>
-            </thead>
-            <tbody id="main">
-                @foreach (var a in Model.Accidents)
-                {
-                    <tr onclick="window.location.href = '@Url.Action("Accident", "Home")/@a.Crash_ID';">
-                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_ID</a></td>
-                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Main_Road_Name</a></td>
-                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.City</a></td>
-                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.County_Name</a></td>
-                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_DT</a></td>
-                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_Severity_Id</a></td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
-
-        <div class="row bg-secondary">
-            <div class="col-1">Crash ID</div>
-            <div class="col-4">Main Road Name</div>
-            <div class="col-2">City</div>
-            <div class="col-2">County</div>
-            <div class="col-2">Crash Date and Time</div>
-            <div class="col-1">Severity (1-5)</div>
-        </div>
-
-        @foreach (var a in Model.Accidents)
-        {
-        <a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">
-            <div class="row">
-                <div class="col-1">@a.Crash_ID</div>
-                <div class="col-4">@a.Main_Road_Name</div>
-                <div class="col-2">@a.City</div>
-                <div class="col-2">@a.County_Name</div>
-                <div class="col-2">@a.Crash_DT</div>
-                <div class="col-1">@a.Crash_Severity_Id</div>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in ViewBag.County)
+                        {
+                            <tr class="filter-table-trtbody">
+                                <td class="filter-table-th"><a asp-controller="Home" asp-action="Search" asp-route-county="@c">@c</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        </a>
-        }
 
-        <div page-model="@Model.PageInfo" page-action="Search" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-dark"
-             page-classes-enabled="true" class="btn-group pull-right m-1"></div>
+            <br />
+
+            <div class="filter-table-div">
+                <table class="filter-table-table">
+                    <thead class="filter-table-thead">
+                        <tr class="filter-table-trthead">
+                            <th class="filter-table-th">City</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in ViewBag.City)
+                        {
+                            <tr class="filter-table-trtbody">
+                                <td class="filter-table-th"><a asp-controller="Home" asp-action="Search" asp-route-city="@c">@c</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col m-0 p-0 list-col">
+            @*<table id="main">
+                    <thead id="main">
+                        <tr>
+                            <th>Crash ID</th>
+                            <th>Main Road Name</th>
+                            <th>City</th>
+                            <th>County</th>
+                            <th>Crash Date and Time</th>
+                            <th>Severity (1-5)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="main">
+                        @foreach (var a in Model.Accidents)
+                        {
+                            <tr onclick="window.location.href = '@Url.Action("Accident", "Home")/@a.Crash_ID';">
+                                <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_ID</a></td>
+                                <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Main_Road_Name</a></td>
+                                <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.City</a></td>
+                                <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.County_Name</a></td>
+                                <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_DT</a></td>
+                                <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_Severity_Id</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>*@
+            <div class="row head-row">
+                <div class="col-1 m-0 p-0 head-data">Crash ID</div>
+                <div class="col-4 m-0 p-0 head-data">Main Road Name</div>
+                <div class="col-2 m-0 p-0 head-data">City</div>
+                <div class="col-2 m-0 p-0 head-data">County</div>
+                <div class="col-2 m-0 p-0 head-data">Date and Time</div>
+                <div class="col-1 m-0 p-0 head-data">Severity</div>
+            </div>
+
+            @foreach (var a in Model.Accidents)
+            {
+                <a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">
+                    <div class="row body-row">
+                        <div class="col-1 body-data">@a.Crash_ID</div>
+                        <div class="col-4 body-data">@a.Main_Road_Name</div>
+                        <div class="col-2 body-data">@a.City</div>
+                        <div class="col-2 body-data">@a.County_Name</div>
+                        <div class="col-2 body-data">@a.Crash_DT</div>
+                        <div class="col-1 body-data">@a.Crash_Severity_Id</div>
+                    </div>
+                </a>
+            }
+
+            <div page-model="@Model.PageInfo" page-action="Search" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-dark"
+                    page-classes-enabled="true" class="btn-group pull-right m-1"></div>
+        </div>
     </div>
 </div>

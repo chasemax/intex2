@@ -135,49 +135,38 @@ a:hover {
 
 
 /*Table*/
-table#main {
-    width: 90%;
-    padding-left: 5px;
-    padding-right: 10%;
+.list-col {
+    padding-left: 10px !important;
+    padding-right: 4% !important;
 }
 
-thead#main tr {
+.head-row {
     font-size: 20px;
-    height: 50px;
+    height: 60px;
     background-color: lightgray;
+    line-height:60px;
 }
 
-thead#main tr th {
+.head-data {
     font-weight:normal;
-    padding-left:10px;
-    padding-right:10px;
+    justify-content:left;
+    padding-left:10px !important;
+    vertical-align:middle !important;
 }
 
-tbody#main tr {
+.body-row {
     height:50px;
-    font-size:18px;
-    border-bottom:1px solid gray;
+    line-height:50px;
 }
 
-    tbody#main tr:hover {
+    .body-row:hover {
         background-color: rgba(211, 208, 208, 0.52);
         cursor: pointer;
     }
 
-tbody#main tr td {
-    padding-left:10px;
-    padding-right:10px;
+.body-data {
+    padding-left:10px !important;
 }
-
-    tbody#main tr td a {
-        border: 1px solid gray;
-        display: block;
-        box-sizing: border-box;
-        padding-left: 50px;
-        padding-right: 50px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
 
 /*Index*/
 .text-body-row {
@@ -205,13 +194,8 @@ tbody#main tr td {
 
 /*Filter*/
 .filter-col {
-    padding-left: 5%;
-    padding-right: 10px;
-}
-
-.list-col {
-    padding-left: 5px;
-    padding-right: 5%
+    padding-left: 4% !important;
+    padding-right: 10px !important;
 }
 
 .filter-table-div {
