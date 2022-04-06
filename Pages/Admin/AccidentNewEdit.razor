@@ -333,6 +333,10 @@
                                 <button class="btn btn-outline-primary" @onclick="ShowDetailTab">Back</button>
                             </div>
                             <div class="col-6 text-end">
+                                @if (Id != 0)
+                                {
+                                    <button class="btn btn-danger" @onclick="DeleteAccident">Delete</button>
+                                }
                                 <button type="submit" class="btn btn-success" form="validator-form">Save</button>
                             </div>
                         </div>
@@ -407,6 +411,19 @@
         NavManager.NavigateTo("/admin");
     }
 
+    public async Task DeleteAccident()
+    {
+        bool shouldDelete = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this accident?");
+        if (shouldDelete)
+        {
+            repo.DeleteAccident(accident);
+            NavManager.NavigateTo("/admin");
+        }
+    }
+
     [Inject]
     public NavigationManager NavManager { get; set; }
+
+    [Inject]
+    public IJSRuntime JS { get; set; }
 }
