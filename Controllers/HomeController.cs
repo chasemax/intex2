@@ -1,4 +1,5 @@
 ﻿using Intex2.Models;
+using Intex2.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -30,28 +31,34 @@ namespace Intex2.Controllers
         //    bool roaddep = false, bool singleveh = false, bool teendriver = false, bool unrestrained = false, bool wildanimal = false, bool workzoneß = false
 
         [HttpGet]
-        public IActionResult Search(string city, string county)
+        public IActionResult Search(int pageNum = 1)
         {
+            int pageSize = 20;
 
-            var accident = repo.Accidents
-                .Where(x => x.City == city || city == null
-                && x.County_Name == county || county == null);
+            var x = new AccidentsViewModel
+            {
+                Accidents = repo.Accidents
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumCrashes = repo.Accidents.Count(),
+                    CrashesPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
 
             ViewBag.City = repo.Accidents.Select(x => x.City).Distinct().ToList().OrderBy(x => x);
             ViewBag.County = repo.Accidents.Select(x => x.County_Name).Distinct().ToList().OrderBy(x => x);
 
-            return View(accident);
+            return View(x);
         }
 
-        [HttpPost]
-        public IActionResult Search(Accident a)
+        public IActionResult Accident(int id)
         {
             var accident = repo.Accidents
-                .Where(x => x.City == a.City || a.City == null
-                && x.County_Name == a.County_Name || a.County_Name == null);
-
-            ViewBag.City = repo.Accidents.Select(x => x.City).Distinct().ToList().OrderBy(x => x);
-            ViewBag.County = repo.Accidents.Select(x => x.County_Name).Distinct().ToList().OrderBy(x => x);
+                .Single(x => x.Crash_ID == id);
 
             return View(accident);
         }

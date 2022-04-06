@@ -107,6 +107,11 @@ namespace Intex2
                     pattern: "{county}&{city}",
                     defaults: new { Controller = "Home", Action = "Search" });
 
+                endpoints.MapControllerRoute(
+                    name: "pageNum",
+                    pattern: "PageNum{pageNum}",
+                    defaults: new { Controller = "Home", Action = "Search" });
+
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/admin/index");

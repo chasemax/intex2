@@ -1,4 +1,4 @@
-﻿@model IQueryable<Accident>
+﻿@model AccidentsViewModel
 
 <div class="row m-0 p-0">
     <div class="col-3 filter-col">
@@ -41,31 +41,57 @@
             </table>
         </div>
         </div>
-        <div class="col m-0 p-0 list-col">
-            <table id="main">
-                <thead id="main">
-                    <tr>
-                        <th>Crash ID</th>
-                        <th>Main Road Name</th>
-                        <th>City</th>
-                        <th>County</th>
-                        <th>Crash Date and Time</th>
-                        <th>Severity (1-5)</th>
+    <div class="col m-0 p-0 list-col">
+        @*<table id="main">
+            <thead id="main">
+                <tr>
+                    <th>Crash ID</th>
+                    <th>Main Road Name</th>
+                    <th>City</th>
+                    <th>County</th>
+                    <th>Crash Date and Time</th>
+                    <th>Severity (1-5)</th>
+                </tr>
+            </thead>
+            <tbody id="main">
+                @foreach (var a in Model.Accidents)
+                {
+                    <tr onclick="window.location.href = '@Url.Action("Accident", "Home")/@a.Crash_ID';">
+                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_ID</a></td>
+                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Main_Road_Name</a></td>
+                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.City</a></td>
+                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.County_Name</a></td>
+                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_DT</a></td>
+                        <td><a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">@a.Crash_Severity_Id</a></td>
                     </tr>
-                </thead>
-                <tbody id="main">
-                    @foreach (var a in Model)
-                    {
-                        <tr onclick="window.location ='./Accident/@a.Crash_ID'">
-                            <td>@a.Crash_ID</td>
-                            <td>@a.Main_Road_Name</td>
-                            <td>@a.City</td>
-                            <td>@a.County_Name</td>
-                            <td>@a.Crash_DT</td>
-                            <td>@a.Crash_Severity_Id</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                }
+            </tbody>
+        </table>*@
+
+        <div class="row bg-secondary">
+            <div class="col-1">Crash ID</div>
+            <div class="col-4">Main Road Name</div>
+            <div class="col-2">City</div>
+            <div class="col-2">County</div>
+            <div class="col-2">Crash Date and Time</div>
+            <div class="col-1">Severity (1-5)</div>
         </div>
+
+        @foreach (var a in Model.Accidents)
+        {
+        <a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">
+            <div class="row">
+                <div class="col-1">@a.Crash_ID</div>
+                <div class="col-4">@a.Main_Road_Name</div>
+                <div class="col-2">@a.City</div>
+                <div class="col-2">@a.County_Name</div>
+                <div class="col-2">@a.Crash_DT</div>
+                <div class="col-1">@a.Crash_Severity_Id</div>
+            </div>
+        </a>
+        }
+
+        <div page-model="@Model.PageInfo" page-action="Search" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-dark"
+             page-classes-enabled="true" class="btn-group pull-right m-1"></div>
     </div>
+</div>

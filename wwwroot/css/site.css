@@ -169,6 +169,16 @@ tbody#main tr td {
     padding-right:10px;
 }
 
+    tbody#main tr td a {
+        border: 1px solid gray;
+        display: block;
+        box-sizing: border-box;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
 /*Index*/
 .text-body-row {
     color: black;
