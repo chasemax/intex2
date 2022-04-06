@@ -157,6 +157,7 @@ a:hover {
 .body-row {
     height:50px;
     line-height:50px;
+    font-size:15px;
 }
 
     .body-row:hover {
@@ -166,6 +167,12 @@ a:hover {
 
 .body-data {
     padding-left:10px !important;
+}
+
+.truncate-text {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 /*Index*/
