@@ -1,9 +1,46 @@
 ﻿@model LoginModel
-<div asp-validation-summary="All"></div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col bg-secondary shadow-lg p-lg-5">
+        <div class="row mb-3">
+            <div class="col text-center">
+                <h1>Login</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <div asp-validation-summary="All"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="post" asp-controller="Account" asp-action="Login">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label asp-for="Username">Username:</label>
+                        </div>
+                        <div class="col">
+                            <input asp-for="Username" class="input-group-text" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label asp-for="Password">Password:</label>
+                        </div>
+                        <div class="col">
+                            <input asp-for="Password" class="input-group-text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="submit" class="btn btn-lg btn-success">Login</button>
+                        </div>
+                    </div>
+                    <input type="hidden" asp-for="ReturnUrl" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+</div>
 
-<form method="post" asp-controller="Account" asp-action="Login">
-    <label asp-for="Username">Username:</label> <input asp-for="Username" />
-    <label asp-for="Password">Password:</label> <input asp-for="Password" />
-    <button type="submit">Login</button>
-    <input type="hidden" asp-for="ReturnUrl" />
-</form>
