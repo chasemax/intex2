@@ -102,6 +102,8 @@ namespace Intex2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                /*
+
                 endpoints.MapControllerRoute(
                     name: "filter",
                     pattern: "{county}&{city}",
@@ -111,6 +113,8 @@ namespace Intex2
                     name: "pageNum",
                     pattern: "PageNum{pageNum}",
                     defaults: new { Controller = "Home", Action = "Search" });
+
+                */
 
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();

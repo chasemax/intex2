@@ -31,28 +31,88 @@ namespace Intex2.Controllers
         //    bool roaddep = false, bool singleveh = false, bool teendriver = false, bool unrestrained = false, bool wildanimal = false, bool workzoneß = false
 
         [HttpGet]
-        public IActionResult Search(int pageNum = 1)
+        public IActionResult Search(int pageNum = 1, string county="All", string city="All", string severity="All")
         {
             int pageSize = 20;
 
-            var x = new AccidentsViewModel
-            {
-                Accidents = repo.Accidents
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+            List<string> test_cities = repo.Accidents.Select(x => x.City).Distinct().ToList();
 
-                PageInfo = new PageInfo
+            var allAccidents = repo.Accidents
+                .Where(x => x.City == city || city == "All")
+                .Where(x => x.County_Name == county || county == "All")
+                .Where(x => x.Crash_Severity_Id.ToString() == severity || severity == "All");
+
+            var accidents = allAccidents
+                .OrderByDescending(x => x.Crash_DT)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize);
+
+            IEnumerable<string> counties = allAccidents.Select(x => x.County_Name).Distinct().ToList().Append("All").OrderBy(x => x);
+            IEnumerable<string> cities = allAccidents.Select(x => x.City).Distinct().ToList().Append("All").OrderBy(x => x);
+            IEnumerable<string> severities = allAccidents.Select(x => x.Crash_Severity_Id.ToString()).Distinct().ToList().Append("All").OrderBy(x => x);
+
+            var cityFilterQueries = new List<KeyValuePair<string, Dictionary<string, string>>>();
+            var countyFilterQueries = new List<KeyValuePair<string, Dictionary<string, string>>>();
+            var severityFilterQueries = new List<KeyValuePair<string, Dictionary<string, string>>>();
+
+            foreach (string current_city in cities)
+            {
+                Dictionary<string, string> queryParams = new Dictionary<string, string>
                 {
-                    TotalNumCrashes = repo.Accidents.Count(),
-                    CrashesPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
+                    { "city", current_city },
+                    { "county", county },
+                    { "severity", severity },
+                    { "pageNum", pageNum.ToString() }
+                };
+                cityFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_city, queryParams));
+            }
+
+            foreach (string current_county in counties)
+            {
+                Dictionary<string, string> queryParams = new Dictionary<string, string>
+                {
+                    { "city", city },
+                    { "county", current_county },
+                    { "severity", severity },
+                    { "pageNum", pageNum.ToString() }
+                };
+                countyFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_county, queryParams));
+            }
+
+            foreach (string current_severity in severities)
+            {
+                Dictionary<string, string> queryParams = new Dictionary<string, string>
+                {
+                    { "city", city },
+                    { "county", county },
+                    { "severity", current_severity },
+                    { "pageNum", pageNum.ToString() }
+                };
+                severityFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_severity, queryParams));
+            }
+
+            // 1. Filter all records that we have, apply pagination skip and take
+
+            var pageInfo = new PageInfo
+            {
+                TotalNumCrashes = accidents.Count(),
+                CrashesPerPage = pageSize,
+                CurrentPage = pageNum,
+                CityFilterQueries = cityFilterQueries,
+                CountyFilterQueries = countyFilterQueries,
+                SeverityFilterQueries = severityFilterQueries,
+                SelectedCity = city,
+                SelectedCounty = county,
+                SelectedSeverity = severity
             };
 
-            ViewBag.City = repo.Accidents.Select(x => x.City).Distinct().ToList().OrderBy(x => x);
-            ViewBag.County = repo.Accidents.Select(x => x.County_Name).Distinct().ToList().OrderBy(x => x);
+            var viewmodel = new AccidentsViewModel
+            {
+                Accidents = accidents,
+                PageInfo = pageInfo,
+            };
 
-            return View(x);
+            return View(viewmodel);
         }
 
         public IActionResult Accident(int id)
