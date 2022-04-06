@@ -101,7 +101,7 @@
         @foreach (var a in Model.Accidents)
         {
         <a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">
-            <div class="row highlight-row">
+            <div class="row">
                 <div class="col-1">@a.Crash_ID</div>
                 <div class="col-4">@a.Main_Road_Name</div>
                 <div class="col-2">@a.City</div>
