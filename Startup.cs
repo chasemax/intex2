@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using Microsoft.ML.OnnxRuntime;
 
 namespace Intex2
 {
@@ -73,6 +74,9 @@ namespace Intex2
                 options.Password.RequiredLength = 6; // Change this before deployment
                 options.Password.RequiredUniqueChars = 1;
             });
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("crashlessutah.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

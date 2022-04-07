@@ -24,6 +24,10 @@
                             Crash Severity: @Model.Crash_Severity_Id
                         </p>
                     }
+
+                    <p class="badge bg-info float-right">
+                        Predicted Severity: @ViewBag.predictedSeverity
+                    </p>
                     <h2>ACCIDENT: @Model.Crash_ID </h2>
                     <p>
                         @Model.Crash_DT
