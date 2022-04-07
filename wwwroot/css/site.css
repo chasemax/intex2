@@ -81,7 +81,7 @@ body {
 
 /*Navbar*/
 .padding-tb {
-    height:125px;
+    height:100px;
 }
 
 .navmain-index {
@@ -97,7 +97,7 @@ body {
 }
 
 .logo {
-    height:61px;
+    width: 300px;
 }
 
 .navitems {
@@ -107,20 +107,36 @@ body {
     padding-top: 58px;
 }
 
+ul#menu {
+    margin: 0px;
+}
+
+ul#index {
+    margin: 0px;
+}
+
 ul#index li {
-    display: inline;
-    font-size: 25px;
+    display: inline-block;
+    font-size: 18px;
     text-decoration: none;
-    margin: 20px;
+    margin: 10px;
     color: white;
 }
 
 ul#menu li {
-    display:inline;
-    font-size:25px;
+    display:inline-block;
+    font-size:18px;
     text-decoration:none;
-    margin:20px;
+    margin:10px;
     color:black;
+}
+
+ul#menu li:hover {
+    color:blue;
+}
+
+ul#index li:hover {
+    color: blue;
 }
 
 a {
@@ -182,7 +198,7 @@ a:hover {
 }
 
 .text-body-column {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .extra-padding {
@@ -191,16 +207,17 @@ a:hover {
 }
 
 /*Layout*/
-.line-div {
-    padding-left: 10%;
-    padding-right: 10%;
-}
 
 .line-hr {
     color: black;
     background-color: black;
     border-width: 0;
     height: 2px;
+}
+
+.line-hr-home {
+    background-color: white;
+    height: 4px;
 }
 
 /*Filter*/
@@ -211,7 +228,7 @@ a:hover {
 
 .filter-table-div {
     overflow-y: auto;
-    height: 100px;
+    height: 180px;
 }
 
 .filter-table-table {
@@ -253,17 +270,31 @@ filter-table-thtd {
 
 /*Accident*/
 .padding-accident {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .padding-conditions {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 1%;
+    padding-right: 1%;
     text-align: center
 }
 
 .float-right {
     float: right;
     font-size: 20px
+}
+
+.checkboxes {
+    padding-left:2%
+}
+
+
+/*MFA Pics*/
+.google-auth {
+    width:200px;
+}
+
+.iphone {
+    width:400px;
 }

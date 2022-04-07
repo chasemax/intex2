@@ -24,6 +24,10 @@
                             Crash Severity: @Model.Crash_Severity_Id
                         </p>
                     }
+
+                    <p class="badge bg-info float-right">
+                        Predicted Severity: @ViewBag.predictedSeverity
+                    </p>
                     <h2>ACCIDENT: @Model.Crash_ID </h2>
                     <p>
                         @Model.Crash_DT
@@ -33,7 +37,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <br />
+    <div class="row padding-accident">
         <div class="col">
             <table>
                 <tr>
@@ -71,30 +76,31 @@
             <img src="@ViewBag.mapsUrl" />
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col">
             <div class="padding-conditions">
-                <h2>Conditions</h2>
+                <h2 >Conditions</h2>
 
-                <span>Work Zone Related</span> @Html.CheckBox("Work_Zone_Related", Model.Work_Zone_Related)
-                <span>Pedestrian Involved</span> @Html.CheckBox("Pedestrian", Model.Pedestrian_Involved)
-                <span>Bicyclist Involved</span> @Html.CheckBox("Bicyclist_Involved", Model.Bicyclist_Involved)
-                <span>Motorcycle Involved</span> @Html.CheckBox("Motorcycle_Involved", Model.Motorcycle_Involved)
-                <span>Improper Restraint</span> @Html.CheckBox("Improper_Restraint", Model.Improper_Restraint)
-                <span>Unrestrained</span> @Html.CheckBox("Unrestrained", Model.Unrestrained)
-                <span>DUI</span> @Html.CheckBox("DUI", Model.DUI)
-                <span>Intersection_Related</span> @Html.CheckBox("Intersection_Related", Model.Intersection_Related)
-                <span>Wild Animal Related</span> @Html.CheckBox("Wild_Animal_Related", Model.Wild_Animal_Related)
-                <span>Domestic Animal Related</span> @Html.CheckBox("Domestic_Animal_Related", Model.Domestic_Animal_Related)
-                <span>Overturn Rollover</span> @Html.CheckBox("Overturn_Rollover", Model.Overturn_Rollover)
-                <span>Commercial Motor Vehicle Involved</span> @Html.CheckBox("Commercial_Motor_Veh_Involved", Model.Commercial_Motor_Veh_Involved)
-                <span>Teenage Driver Involved</span> @Html.CheckBox("Teenage_Driver_Involved", Model.Teenage_Driver_Involved)
-                <span>Older Driver Involved</span> @Html.CheckBox("Older_Driver_Involved", Model.Older_Driver_Involved)
-                <span>Night Dark Condition</span> @Html.CheckBox("Night_Dark_Condition", Model.Night_Dark_Condition)
-                <span>Single Vehicle</span> @Html.CheckBox("Single_Vehicle", Model.Single_Vehicle)
-                <span>Distracted Driving</span> @Html.CheckBox("Distracted_Driving", Model.Distracted_Driving)
-                <span>Drowsy Driving</span> @Html.CheckBox("Drowsy_Driving", Model.Drowsy_Driving)
-                <span>Roadway Departure</span> @Html.CheckBox("Roadway_Departure", Model.Roadway_Departure)
+                <span class="checkboxes">Work Zone Related</span> @Html.CheckBox("Work_Zone_Related", Model.Work_Zone_Related, new { @disabled = "disabled" })
+                <span class="checkboxes">Pedestrian Involved</span> @Html.CheckBox("Pedestrian", Model.Pedestrian_Involved, new { @disabled = "disabled" })
+                <span class="checkboxes">Bicyclist Involved</span> @Html.CheckBox("Bicyclist_Involved", Model.Bicyclist_Involved, new { @disabled = "disabled" })
+                <span class="checkboxes">Motorcycle Involved</span> @Html.CheckBox("Motorcycle_Involved", Model.Motorcycle_Involved, new { @disabled = "disabled" })
+                <span class="checkboxes">Improper Restraint</span> @Html.CheckBox("Improper_Restraint", Model.Improper_Restraint, new { @disabled = "disabled" })
+                <span class="checkboxes">Unrestrained</span> @Html.CheckBox("Unrestrained", Model.Unrestrained, new { @disabled = "disabled" })
+                <span class="checkboxes">DUI</span> @Html.CheckBox("DUI", Model.DUI, new { @disabled = "disabled" })
+                <span class="checkboxes">Intersection_Related</span> @Html.CheckBox("Intersection_Related", Model.Intersection_Related, new { @disabled = "disabled" })
+                <span class="checkboxes">Wild Animal Related</span> @Html.CheckBox("Wild_Animal_Related", Model.Wild_Animal_Related, new { @disabled = "disabled" })
+                <span class="checkboxes">Domestic Animal Related</span> @Html.CheckBox("Domestic_Animal_Related", Model.Domestic_Animal_Related, new { @disabled = "disabled" })
+                <span class="checkboxes">Overturn Rollover</span> @Html.CheckBox("Overturn_Rollover", Model.Overturn_Rollover, new { @disabled = "disabled" })
+                <span class="checkboxes">Commercial Motor Vehicle Involved</span> @Html.CheckBox("Commercial_Motor_Veh_Involved", Model.Commercial_Motor_Veh_Involved, new { @disabled = "disabled" })
+                <span class="checkboxes">Teenage Driver Involved</span> @Html.CheckBox("Teenage_Driver_Involved", Model.Teenage_Driver_Involved, new { @disabled = "disabled" })
+                <span class="checkboxes">Older Driver Involved</span> @Html.CheckBox("Older_Driver_Involved", Model.Older_Driver_Involved, new { @disabled = "disabled" })
+                <span class="checkboxes">Night Dark Condition</span> @Html.CheckBox("Night_Dark_Condition", Model.Night_Dark_Condition, new { @disabled = "disabled" })
+                <span class="checkboxes">Single Vehicle</span> @Html.CheckBox("Single_Vehicle", Model.Single_Vehicle, new { @disabled = "disabled" })
+                <span class="checkboxes">Distracted Driving</span> @Html.CheckBox("Distracted_Driving", Model.Distracted_Driving, new { @disabled = "disabled" })
+                <span class="checkboxes">Drowsy Driving</span> @Html.CheckBox("Drowsy_Driving", Model.Drowsy_Driving, new { @disabled = "disabled" })
+                <span class="checkboxes">Roadway Departure</span> @Html.CheckBox("Roadway_Departure", Model.Roadway_Departure, new { @disabled = "disabled" })
 
             </div>
         </div>
