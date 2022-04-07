@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="row my-3">
-                            <div class="col-6">
+                            <div class="col-6 d-flex align-items-center">
                                 <label>Main Road:</label>
                             </div>
                             <div class="col-6">
@@ -34,74 +34,84 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-6 d-flex align-items-center">
                                 <label>County:</label>
                             </div>
                             <div class="col-6">
-                                <input class="form-control" @bind-value="@accident.County_Name" />
+                                <select class="form-control form-select" @bind="@accident.County_Name">
+                                    @foreach (var county in countyList)
+                                    {
+                                        <option value="@county">@county</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-6 d-flex align-items-center">
                                 <label>City:</label>
                             </div>
                             <div class="col-6">
-                                <input class="form-control" @bind-value="@accident.City" />
+                                <select class="form-control form-select" @bind="@accident.City">
+                                    @foreach (var city in cityList)
+                                    {
+                                        <option value="@city">@city</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-2">
+                            <div class="col-2 d-flex align-items-center">
                                 <label>Date:</label>
                             </div>
                             <div class="col-4">
                                 <input type="date" class="form-control" @bind-value="@daySelected"/>
                             </div>
-                            <div class="col-1">
+                            <div class="col-1 d-flex align-items-center">
                                 <label>Time:</label>
                             </div>
                             <div class="col-5 text-end">
-                                <select @bind="@hourSelected" class="form-control d-inline w-25">
+                                <select @bind="@hourSelected" class="form-control form-select d-inline w-auto">
                                         @foreach (var i in Enumerable.Range(1, 12))
                                         {
                                             <option value="@i">@i</option>
                                         }
                                 </select>
                                 :
-                                <select @bind="@minuteSelected" class="form-control d-inline w-25">
+                                <select @bind="@minuteSelected" class="form-control form-select d-inline w-auto">
                                     @foreach (var i in Enumerable.Range(0, 60))
                                     {
                                         <option value="@(i)">@(i < 10 ? "0" + i.ToString() : i.ToString())</option>
                                     }
                                 </select>
-                                <select @bind="@ampm" class="form-control d-inline w-25">
+                                <select @bind="@ampm" class="form-control form-select d-inline w-auto">
                                     <option value="AM">AM</option>
                                     <option value="PM">PM</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-3 d-flex align-items-center">
                             <div class="col-2">
                                 <label>Route #:</label>
                             </div>
                             <div class="col-4">
                                 <input class="form-control" @bind-value="@accident.Route" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 d-flex align-items-center">
                                 <label>Milepoint:</label>
                             </div>
                             <div class="col-4">
                                 <input class="form-control" @bind-value="@accident.MilePoint" />
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3 d-flex align-items-center">
                             <div class="col-2">
                                 <label>Latitude:</label>
                             </div>
                             <div class="col-4">
                                 <input class="form-control" @bind-value="@accident.Latitude" />
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 d-flex align-items-center">
                                 <label>Longitude:</label>
                             </div>
                             <div class="col-4">
@@ -388,11 +398,17 @@
 
     public string ampm { get; set; }
 
+    public IEnumerable<string> countyList { get; set; }
+    public IEnumerable<string> cityList { get; set; }
+
     [Parameter]
     public int Id { get; set; }
 
     protected override void OnParametersSet()
     {
+        countyList = repo.Accidents.Select(x => x.County_Name).Distinct().OrderBy(x => x).ToList();
+        cityList = repo.Accidents.Select(x => x.City).Distinct().OrderBy(x => x).ToList();
+
         if (Id != 0) {
             accident = repo.Accidents.FirstOrDefault(x => x.Crash_ID == Id);
             pageTitle = "Editing Accident #" + accident.Crash_ID.ToString();
