@@ -9,27 +9,30 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-
-    <div class="row m-0 p-0">
-        <div class="padding-tb">
-            <div class="navmain-layout">
-                <a asp-controller="Home" asp-action="Index">
-                    <img class="logo" src="~/img/CrashLessUtahBlack.png" />
-                </a>
+    <div class="container">
+        <div class="row mt-4 p-0">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <a asp-controller="Home" asp-action="Index">
+                        <img class="logo" src="~/img/CrashLessUtahBlack.png" />
+                    </a>
+                </div>
+                <div>
+                    <ul id="menu">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="Search">Accident Search</a></li>
+                        <li><a asp-controller="Home" asp-action="Severity">Severity Calculator</a></li>
+                        <li><a asp-page="/admin/new-accident">Report an Accident</a></li>
+                        <li><vc:login></vc:login></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navitems">
-                <ul id="menu">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="Search">Accident Search</a></li>
-                    <li><a asp-controller="Home" asp-action="Severity">Severity Calculator</a></li>
-                    <li><vc:login></vc:login></li>
-                </ul>
+            <div>
+                <hr class="line-hr" />
             </div>
-        </div>
-        <div class="line-div">
-            <hr class="line-hr" />
         </div>
     </div>
+    
 
     @RenderBody()
 
