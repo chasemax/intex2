@@ -397,13 +397,15 @@
         if (Id == 0)
         {
             repo.AddAccident(accident);
+            NavManager.NavigateTo("/admin");
         }
         else
         {
             repo.UpdateAccident(accident);
+            NavManager.NavigateTo("/admin");
         }
 
-        NavManager.NavigateTo("/admin");
+
     }
 
     public void Cancel()
