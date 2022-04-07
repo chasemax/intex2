@@ -2,6 +2,7 @@
 using Intex2.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace Intex2.Controllers
     public class HomeController : Controller
     {
         private IAccidentRepo repo { get; set; }
+        private IConfiguration Configuration { get; set; }
 
-        public HomeController(IAccidentRepo temp)
+        public HomeController(IAccidentRepo temp, IConfiguration config)
         {
             repo = temp;
+            Configuration = config;
         }
 
         public IActionResult Index()
@@ -119,6 +122,14 @@ namespace Intex2.Controllers
         {
             var accident = repo.Accidents
                 .Single(x => x.Crash_ID == id);
+
+            ViewBag.mapsUrl = "https://maps.googleapis.com/maps/api/staticmap?center=" 
+                + accident.Latitude.ToString() + "," 
+                + accident.Longitude.ToString() 
+                + "&zoom=16&size=500x400&maptype=roadmap&markers=color:red%7C" 
+                + accident.Latitude.ToString() + "," 
+                + accident.Longitude.ToString() 
+                + "&key=" + Configuration["GoogleAPIKey"];
 
             return View(accident);
         }
