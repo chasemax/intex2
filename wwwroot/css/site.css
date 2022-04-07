@@ -236,3 +236,20 @@ filter-table-thtd {
     padding-left: 10px;
     font-size: 18px;
 }
+
+/*Accident*/
+.padding-accident {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.padding-conditions {
+    padding-left: 15%;
+    padding-right: 15%;
+    text-align: center
+}
+.float-right{
+    float:right;
+    font-size:20px
+}
+
