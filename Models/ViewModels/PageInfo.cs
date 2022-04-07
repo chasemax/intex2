@@ -21,5 +21,7 @@ namespace Intex2.Models.ViewModels
         public string SelectedSeverity { get; set; }
         public string SelectedCity { get; set; }
         public string SelectedCounty { get; set; }
+
+        public string CurrentSearchQuery { get; set; }
     }
 }

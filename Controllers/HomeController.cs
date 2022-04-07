@@ -34,13 +34,12 @@ namespace Intex2.Controllers
         //    bool roaddep = false, bool singleveh = false, bool teendriver = false, bool unrestrained = false, bool wildanimal = false, bool workzoneß = false
 
         [HttpGet]
-        public IActionResult Search(int pageNum = 1, string county="All", string city="All", string severity="All")
+        public IActionResult Search(int pageNum = 1, string county="All", string city="All", string severity="All", string searchText="")
         {
             int pageSize = 20;
 
-            List<string> test_cities = repo.Accidents.Select(x => x.City).Distinct().ToList();
-
             var allAccidents = repo.Accidents
+                .Where(x => x.Crash_ID.ToString().Contains(searchText) || x.Main_Road_Name.Contains(searchText) || searchText == "")
                 .Where(x => x.City == city || city == "All")
                 .Where(x => x.County_Name == county || county == "All")
                 .Where(x => x.Crash_Severity_Id.ToString() == severity || severity == "All");
@@ -65,7 +64,8 @@ namespace Intex2.Controllers
                     { "city", current_city },
                     { "county", county },
                     { "severity", severity },
-                    { "pageNum", pageNum.ToString() }
+                    { "pageNum", pageNum.ToString() },
+                    { "searchText", searchText }
                 };
                 cityFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_city, queryParams));
             }
@@ -77,7 +77,8 @@ namespace Intex2.Controllers
                     { "city", city },
                     { "county", current_county },
                     { "severity", severity },
-                    { "pageNum", pageNum.ToString() }
+                    { "pageNum", pageNum.ToString() },
+                    { "searchText", searchText }
                 };
                 countyFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_county, queryParams));
             }
@@ -89,7 +90,8 @@ namespace Intex2.Controllers
                     { "city", city },
                     { "county", county },
                     { "severity", current_severity },
-                    { "pageNum", pageNum.ToString() }
+                    { "pageNum", pageNum.ToString() },
+                    { "searchText", searchText }
                 };
                 severityFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_severity, queryParams));
             }
@@ -106,7 +108,8 @@ namespace Intex2.Controllers
                 SeverityFilterQueries = severityFilterQueries,
                 SelectedCity = city,
                 SelectedCounty = county,
-                SelectedSeverity = severity
+                SelectedSeverity = severity,
+                CurrentSearchQuery = searchText
             };
 
             var viewmodel = new AccidentsViewModel
@@ -116,6 +119,17 @@ namespace Intex2.Controllers
             };
 
             return View(viewmodel);
+        }
+
+        [HttpPost]
+        public IActionResult Search()
+        {
+            string searchText = Request.Form["searchText"];
+            Dictionary<string, string> queryParams = new Dictionary<string, string>
+                {
+                    { "searchText", searchText }
+                };
+            return RedirectToAction("Search", queryParams);
         }
 
         public IActionResult Accident(int id)
