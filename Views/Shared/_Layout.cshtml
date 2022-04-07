@@ -29,11 +29,14 @@
     </div>
 
     @RenderBody()
+    <partial name="_CookieConsentPartial" />
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+
 
     <footer class="footer bg-white text-center position-fixed">
         <a asp-controller="Home" asp-action="Index">Home</a> |

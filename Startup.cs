@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace Intex2
 {
@@ -29,6 +30,14 @@ namespace Intex2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options => 
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            });
+
             services.AddControllersWithViews();
 
             services.AddDbContext<AccidentDbContext>(options =>
@@ -102,26 +111,15 @@ namespace Intex2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                /*
-
-                endpoints.MapControllerRoute(
-                    name: "filter",
-                    pattern: "{county}&{city}",
-                    defaults: new { Controller = "Home", Action = "Search" });
-
-                endpoints.MapControllerRoute(
-                    name: "pageNum",
-                    pattern: "PageNum{pageNum}",
-                    defaults: new { Controller = "Home", Action = "Search" });
-
-                */
-
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/admin/index");
             });
 
             IdentitySeedData.EnsurePopulated(app);
+
+            //*************************************************************************************************
+            app.UseCookiePolicy();
         }
     }
 }
