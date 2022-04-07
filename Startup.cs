@@ -94,6 +94,9 @@ namespace Intex2
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            //*************************************************************************************************
+            app.UseCookiePolicy();
+
 
             app.UseRouting();
             app.UseAuthentication();
@@ -118,8 +121,7 @@ namespace Intex2
 
             IdentitySeedData.EnsurePopulated(app);
 
-            //*************************************************************************************************
-            app.UseCookiePolicy();
+
         }
     }
 }
