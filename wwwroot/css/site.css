@@ -81,31 +81,30 @@ body {
 
 /*Navbar*/
 .padding-tb {
-    padding-top:10px;
-    padding-bottom:15px;
+    height:125px;
 }
 
 .navmain-index {
-    font-size: 60px;
-    color: white;
-    padding-top: 5px;
-    padding-left: 14%;
     float: left;
+    padding-left: 13%;
+    padding-top: 32px;
 }
 
 .navmain-layout {
-    font-size: 60px;
-    color: black;
-    padding-top: 5px;
-    padding-left: 14%;
     float: left;
+    padding-left: 13%;
+    padding-top: 32px;
+}
+
+.logo {
+    height:61px;
 }
 
 .navitems {
-    padding-top: 45px;
     text-align: right;
-    padding-right: 14%;
     float: right;
+    padding-right: 13%;
+    padding-top: 58px;
 }
 
 ul#index li {
@@ -237,19 +236,12 @@ filter-table-thtd {
     font-size: 18px;
 }
 
-/*Accident*/
-.padding-accident {
-    padding-left: 15%;
-    padding-right: 15%;
+/*-----------------VALIDATION MESSAGE STYLES-----------------*/
+
+.validation-message {
+    color: darkred;
 }
 
-.padding-conditions {
-    padding-left: 15%;
-    padding-right: 15%;
-    text-align: center
+.validation-errors {
+    list-style-type: none;
 }
-.float-right{
-    float:right;
-    font-size:20px
-}
-

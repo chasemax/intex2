@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="icon" href="~/img/icon.png">
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -17,7 +18,9 @@
 
         <div class="padding-tb">
             <div class="navmain-index">
-                <b><a asp-controller="Home" asp-action="Index">Intex Project</a></b>
+                <a asp-controller="Home" asp-action="Index">
+                    <img class="logo" src="~/img/CrashLessUtahWhite.png" />
+                </a>
             </div>
             <div class="navitems">
                 <ul id="index">

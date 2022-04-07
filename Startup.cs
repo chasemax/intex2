@@ -92,7 +92,7 @@ namespace Intex2
 
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';img-src 'self' data:;style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';img-src 'self' data: https://maps.googleapis.com;style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='");
                 await next();
             });
 
