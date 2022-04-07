@@ -1,23 +1,41 @@
 ﻿@model LoginModel
 
-<h1>2-Factor Authentication (TOTP)</h1>
-<h3>With Google Authenticator</h3>
-
-<div>
-    <div asp-validation-summary="All"></div>
-    @using (Html.BeginForm("Verify2FA", "Account", FormMethod.Post))
-    {
-        <input type="text" name="passcode" />
-        <input type="submit" class="btn btn-success" />
-        <input type="hidden" name="username" value="@Model.Username" />
-        <input type="hidden" name="password" value="@Model.Password" />
-        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-    }
-</div>
-<h3>Remove this piece when finished with development</h3>
+@*<h3>Remove this piece when finished with development</h3>
 <div>
     <img src="@ViewBag.BarcodeImageUrl" />
 </div>
 <div>
     Manual Setup Code : @ViewBag.SetupCode
+</div>*@
+<div class="row">
+    <div class="col"></div>
+    <div class="col-5">
+        <div class="text-center">
+            <h1>2-Factor Authentication (TOTP)</h1>
+            <img class="google-auth" src="~/img/Google_Auth.png" />
+            <h3>With Google Authenticator</h3>
+            <br />
+            <div asp-validation-summary="All"></div>
+            @using (Html.BeginForm("Verify2FA", "Account", FormMethod.Post))
+            {
+                <input type="text" name="passcode" />
+                <input type="submit" class="btn btn-success" />
+                <input type="hidden" name="username" value="@Model.Username" />
+                <input type="hidden" name="password" value="@Model.Password" />
+                <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+            }
+        </div>
+        <br /><br />
+        <div>
+            <h3>Steps:</h3>
+            <ol>
+                <li>Open the Google Authenticator App</li>
+                <li>Enter the code for @Model.Username in order to be authenticated</li>
+            </ol>
+        </div>
+    </div>
+    <div class="col-3">
+        <img class="iphone" src="~/img/MFA_Sample_Screen.png" />
+    </div>
+    <div class="col"></div>
 </div>
