@@ -3,7 +3,13 @@
 <div>
     <div class="row m-0 p-0">
         <div class="col-3 filter-col">
-            <h2>Filtering</h2>
+            <h2>Search by ID</h2>
+            <form method="post" class="input-group mt-3">
+                <input class="form-control" />
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Search">Search</a>
+            </form>
+            <br />
+            <h2>Filter</h2>
             <div class="filter-table-div">
                 <table class="filter-table-table">
                     <thead class="filter-table-thead">
