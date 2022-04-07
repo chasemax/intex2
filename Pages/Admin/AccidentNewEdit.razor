@@ -54,13 +54,29 @@
                                 <label>Date:</label>
                             </div>
                             <div class="col-4">
-                                <input type="date" class="form-control" />
+                                <input type="date" class="form-control" @bind-value="@daySelected"/>
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <label>Time:</label>
                             </div>
-                            <div class="col-4">
-                                <input class="form-control" />
+                            <div class="col-5 text-end">
+                                <select @bind="@hourSelected" class="form-control d-inline w-25">
+                                        @foreach (var i in Enumerable.Range(1, 12))
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                </select>
+                                :
+                                <select @bind="@minuteSelected" class="form-control d-inline w-25">
+                                    @foreach (var i in Enumerable.Range(0, 60))
+                                    {
+                                        <option value="@(i)">@(i < 10 ? "0" + i.ToString() : i.ToString())</option>
+                                    }
+                                </select>
+                                <select @bind="@ampm" class="form-control d-inline w-25">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
                             </div>
                         </div>
 
@@ -364,6 +380,14 @@
 
     public string pageTitle { get; set; }
 
+    public DateTime daySelected { get; set; }
+
+    public int hourSelected { get; set; }
+
+    public int minuteSelected { get; set; }
+
+    public string ampm { get; set; }
+
     [Parameter]
     public int Id { get; set; }
 
@@ -372,11 +396,20 @@
         if (Id != 0) {
             accident = repo.Accidents.FirstOrDefault(x => x.Crash_ID == Id);
             pageTitle = "Editing Accident #" + accident.Crash_ID.ToString();
+            daySelected = accident.Crash_DT;
+            hourSelected = accident.Crash_DT.Hour > 12 ? accident.Crash_DT.Hour - 12 : accident.Crash_DT.Hour;
+            hourSelected = hourSelected == 0 ? hourSelected = 12 : hourSelected;
+            minuteSelected = accident.Crash_DT.Minute;
+            ampm = accident.Crash_DT.Hour >= 12 ? "PM" : "AM";
         }
         else
         {
             accident.Crash_Severity_Id = 1;
             pageTitle = "New Accident";
+            daySelected = DateTime.Now;
+            hourSelected = 1;
+            minuteSelected = 0;
+            ampm = "AM";
         }
     }
 
@@ -394,6 +427,10 @@
 
     public void SaveAccident()
     {
+
+        int calculatedHour = ampm == "AM" ? hourSelected : hourSelected + 12;
+        calculatedHour = calculatedHour == 24 ? 0 : calculatedHour;
+        accident.Crash_DT = new DateTime(accident.Crash_DT.Year, accident.Crash_DT.Month, accident.Crash_DT.Day, calculatedHour, minuteSelected, 0);
         if (Id == 0)
         {
             repo.AddAccident(accident);
