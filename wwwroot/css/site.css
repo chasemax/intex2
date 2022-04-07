@@ -211,7 +211,7 @@ a:hover {
 
 .filter-table-div {
     overflow-y: auto;
-    height: 100px;
+    height: 180px;
 }
 
 .filter-table-table {
@@ -253,13 +253,13 @@ filter-table-thtd {
 
 /*Accident*/
 .padding-accident {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 
 .padding-conditions {
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 1%;
+    padding-right: 1%;
     text-align: center
 }
 
@@ -267,3 +267,8 @@ filter-table-thtd {
     float: right;
     font-size: 20px
 }
+
+.checkboxes {
+    padding-left:2%
+}
+
