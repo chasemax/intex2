@@ -11,10 +11,10 @@ namespace Intex2.Models
 {
     public static class IdentitySeedData
     {
-        private const string adminUser = "Admin";
-        private const string adminPassword = "Admin123!";
-        private const string mfaUser = "mfauser";
-        private const string mfaPassword = "MFApass123!";
+        private const string adminUser = "admin";
+        private const string adminPassword = "Administrator123!";
+        private const string mfaUser = "mfaadmin";
+        private const string mfaPassword = "Multifactor123!";
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
             AppIdentityDbContext context = app.ApplicationServices
@@ -42,7 +42,7 @@ namespace Intex2.Models
             if (user2 == null)
             {
                 user2 = new IdentityUser(mfaUser);
-                user2.Email = "maxfield.chase@gmail.com";
+                user2.Email = "mfaadmin@example.com";
                 user2.PhoneNumber = "333-1234";
                 user2.TwoFactorEnabled = true;
                 await userManager.CreateAsync(user2, mfaPassword);

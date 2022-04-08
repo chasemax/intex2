@@ -68,7 +68,7 @@ namespace Intex2.Controllers
                     { "city", current_city },
                     { "county", county },
                     { "severity", severity },
-                    { "pageNum", pageNum.ToString() },
+                    { "pageNum", "1".ToString() },
                     { "searchText", searchText }
                 };
                 cityFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_city, queryParams));
@@ -81,7 +81,7 @@ namespace Intex2.Controllers
                     { "city", city },
                     { "county", current_county },
                     { "severity", severity },
-                    { "pageNum", pageNum.ToString() },
+                    { "pageNum", "1".ToString() },
                     { "searchText", searchText }
                 };
                 countyFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_county, queryParams));
@@ -94,7 +94,7 @@ namespace Intex2.Controllers
                     { "city", city },
                     { "county", county },
                     { "severity", current_severity },
-                    { "pageNum", pageNum.ToString() },
+                    { "pageNum", "1".ToString() },
                     { "searchText", searchText }
                 };
                 severityFilterQueries.Add(new KeyValuePair<string, Dictionary<string, string>>(current_severity, queryParams));

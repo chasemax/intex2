@@ -88,7 +88,7 @@ namespace Intex2
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6; // Change this before deployment
+                options.Password.RequiredLength = 15;
                 options.Password.RequiredUniqueChars = 1;
             });
 
@@ -113,16 +113,16 @@ namespace Intex2
             app.UseAuthentication();
             app.UseAuthorization();
 
-            /*
+            
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';" +
-                    "img-src 'self' data: https://maps.googleapis.com;style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='; " +
-                    "script-src-elem 'unsafe-inline' https://www.gstatic.com https://ajax.googleapis.com 'self' 'sha256-+9ui/rkR7K9AWG5Om71256blXtWZBgmrnU2zVco/M0s=' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='; " +
-                    "style-src-elem https://www.gstatic.com 'self' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='");
+                    "img-src 'self' data: https://maps.googleapis.com;" +
+                    "style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='; " +
+                    "script-src-elem 'unsafe-inline' https://www.gstatic.com https://ajax.googleapis.com 'self'; " +
+                    "style-src-elem https://www.gstatic.com 'self' ");
                 await next();
             });
-            */
 
             app.UseEndpoints(endpoints =>
             {
