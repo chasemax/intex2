@@ -64,17 +64,17 @@
                                 <label>Date:</label>
                             </div>
                             <div class="col-4">
-                                <input type="date" class="form-control" @bind-value="@daySelected"/>
+                                <input type="date" class="form-control" @bind-value="@daySelected" />
                             </div>
                             <div class="col-1 d-flex align-items-center">
                                 <label>Time:</label>
                             </div>
                             <div class="col-5 text-end">
                                 <select @bind="@hourSelected" class="form-control form-select d-inline w-auto">
-                                        @foreach (var i in Enumerable.Range(1, 12))
-                                        {
-                                            <option value="@i">@i</option>
-                                        }
+                                    @foreach (var i in Enumerable.Range(1, 12))
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
                                 </select>
                                 :
                                 <select @bind="@minuteSelected" class="form-control form-select d-inline w-auto">
@@ -413,7 +413,8 @@
         countyList = repo.Accidents.Select(x => x.County_Name).Distinct().OrderBy(x => x).ToList();
         cityList = repo.Accidents.Select(x => x.City).Distinct().OrderBy(x => x).ToList();
 
-        if (Id != 0) {
+        if (Id != 0)
+        {
             accident = repo.Accidents.FirstOrDefault(x => x.Crash_ID == Id);
             pageTitle = "Editing Accident #" + accident.Crash_ID.ToString();
             daySelected = accident.Crash_DT;
