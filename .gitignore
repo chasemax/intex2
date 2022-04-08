@@ -5,6 +5,7 @@
 
 # Custom gitignore
 appsettings.Production.json
+appsettings.Development.json
 
 # User-specific files
 *.rsuser
