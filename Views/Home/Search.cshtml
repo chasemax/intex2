@@ -6,9 +6,9 @@
 <div>
     <div class="row m-0 p-0">
         <div class="col-3 filter-col">
-            <h2>Search by ID / Road Name</h2>
+            <h2>Search</h2>
             <form method="post" class="input-group mt-3">
-                <input class="form-control" name="searchText" value="@Model.PageInfo.CurrentSearchQuery" />
+                <input class="form-control" name="searchText" value="@Model.PageInfo.CurrentSearchQuery" placeholder="Search ID or Road Name" />
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
             <br />
@@ -23,8 +23,8 @@
                     <tbody>
                         @foreach (var c in Model.PageInfo.CountyFilterQueries)
                         {
-                        <tr class="filter-table-trtbody">
-                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCounty ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                        <tr class="filter-table-trtbody filter-table-row">
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCounty ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value" class="d-inline-block w-100">@c.Key</a></td>
                         </tr>
                         }
                     </tbody>
@@ -43,8 +43,8 @@
                     <tbody>
                         @foreach (var c in Model.PageInfo.CityFilterQueries)
                         {
-                        <tr class="filter-table-trtbody">
-                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                        <tr class="filter-table-trtbody filter-table-row">
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value" class="d-inline-block w-100">@c.Key</a></td>
                         </tr>
                         }
                     </tbody>
@@ -63,8 +63,8 @@
                     <tbody>
                         @foreach (var c in Model.PageInfo.SeverityFilterQueries)
                         {
-                        <tr class="filter-table-trtbody">
-                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedSeverity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                        <tr class="filter-table-trtbody filter-table-row">
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedSeverity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value" class="d-inline-block w-100">@c.Key</a></td>
                         </tr>
                         }
                     </tbody>

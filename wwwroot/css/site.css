@@ -132,11 +132,11 @@ ul#menu li {
 }
 
 ul#menu li:hover {
-    color:blue;
+    text-decoration: underline;
 }
 
 ul#index li:hover {
-    color: blue;
+    text-decoration: underline;
 }
 
 a {
@@ -256,6 +256,10 @@ a:hover {
 filter-table-thtd {
     padding-left: 10px;
     font-size: 18px;
+}
+
+.filter-table-row:hover {
+    background-color:lightblue;
 }
 
 /*-----------------VALIDATION MESSAGE STYLES-----------------*/
