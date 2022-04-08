@@ -121,6 +121,7 @@ namespace Intex2
                     "style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='; " +
                     "script-src-elem 'unsafe-inline' https://www.gstatic.com https://ajax.googleapis.com 'self'; " +
                     "style-src-elem https://www.gstatic.com 'self' ");
+                context.Response.Headers.Add("Strict-Transport-Security", "max-age=3600");
                 await next();
             });
 
