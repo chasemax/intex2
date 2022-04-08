@@ -18,13 +18,15 @@ namespace Intex2.Controllers
     {
         private IAccidentRepo repo { get; set; }
         private IConfiguration Configuration { get; set; }
-        private InferenceSession iSession { get; set; }
+        private InferenceSession accidentSession { get; set; }
+        private InferenceSession calculatorSession { get; set; }
 
-        public HomeController(IAccidentRepo temp, IConfiguration config, InferenceSession sess)
+        public HomeController(IAccidentRepo temp, IConfiguration config)
         {
             repo = temp;
             Configuration = config;
-            iSession = sess;
+            accidentSession = new InferenceSession("crashlessutah.onnx"); // Insert file path here
+            calculatorSession = new InferenceSession("crashlessutah_bool.onnx"); // Insert file path here
         }
 
         public IActionResult Index()
@@ -151,19 +153,6 @@ namespace Intex2.Controllers
 
             float[] dataForModel = new float[]
             {
-                (float)accident.MilePoint, 
-                accident.Intersection_Related ? 1 : 0, 
-                accident.Teenage_Driver_Involved ? 1 : 0,
-                accident.Older_Driver_Involved ? 1 : 0, 
-                accident.Night_Dark_Condition ? 1 : 0, 
-                accident.Single_Vehicle ? 1 : 0,
-                accident.Roadway_Departure ? 1 : 0, 
-                accident.Route != 15 && accident.Route != 89 ? 1 : 0, 
-                accident.Main_Road_Name != "I-15" ? 1 : 0,
-                accident.City == "OUTSIDE CITY LIMITS" ? 1 : 0, 
-                accident.County_Name != "SALT LAKE" && accident.County_Name != "WEBER" && accident.County_Name != "DAVIS" && accident.County_Name != "UTAH"? 1 : 0,
-                accident.County_Name == "SALT LAKE" ? 1 : 0, 
-                accident.County_Name == "UTAH" ? 1 : 0,
                 (float)accident.Latitude, 
                 (float)accident.Longitude,
                 (float)accident.Crash_DT.Hour, 
@@ -174,12 +163,12 @@ namespace Intex2.Controllers
 
             DenseTensor<float> tensorForModel = new DenseTensor<float>(dataForModel, dimensions);
 
-            var result = iSession.Run(new List<NamedOnnxValue> {
+            var result = accidentSession.Run(new List<NamedOnnxValue> {
                 NamedOnnxValue.CreateFromTensor<float>("float_input", tensorForModel)
             });
 
-            Tensor<long> classification = result.First().AsTensor<long>();
-            int predictedSeverity = (int)classification.First();
+            Tensor<string> classification = result.First().AsTensor<string>();
+            string predictedSeverity = classification.First();
             result.Dispose();
 
             ViewBag.predictedSeverity = predictedSeverity;
@@ -196,6 +185,43 @@ namespace Intex2.Controllers
         [HttpPost]
         public IActionResult Severity(PredictionModel p)
         {
+            float[] dataForModel = new float[]
+            {
+                p.Work_Zone_Related ? 1 : 0,
+                p.Pedestrian_Involved ? 1 : 0,
+                p.Bicyclist_Involved ? 1 : 0,
+                p.Motorcycle_Involved ? 1 : 0,
+                p.Improper_Restraint ? 1 : 0,
+                p.Unrestrained ? 1 : 0,
+                p.DUI ? 1 : 0,
+                p.Intersection_Related ? 1 : 0,
+                p.Wild_Animal_Related ? 1 : 0,
+                p.Domestic_Animal_Related ? 1 : 0,
+                p.Overturn_Rollover ? 1 : 0,
+                p.Commercial_Motor_Veh_Involved ? 1 : 0,
+                p.Teenage_Driver_Involved ? 1 : 0,
+                p.Older_Driver_Involved ? 1 : 0,
+                p.Night_Dark_Condition ? 1 : 0,
+                p.Single_Vehicle ? 1 : 0,
+                p.Distracted_Driving ? 1 : 0,
+                p.Drowsy_Driving ? 1 : 0,
+                p.Roadway_Departure ? 1 : 0
+            };
+
+            int[] dimensions = new int[] { 1, dataForModel.Length };
+
+            DenseTensor<float> tensorForModel = new DenseTensor<float>(dataForModel, dimensions);
+
+            var result = calculatorSession.Run(new List<NamedOnnxValue> {
+                NamedOnnxValue.CreateFromTensor<float>("float_input", tensorForModel)
+            });
+
+            Tensor<string> classification = result.First().AsTensor<string>();
+            string predictedSeverity = classification.First();
+            result.Dispose();
+
+            ViewBag.predictedSeverity = predictedSeverity;
+
             return View(p);
         }
 
