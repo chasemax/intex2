@@ -19,11 +19,11 @@ namespace Intex2.Controllers
         {
             IEnumerable<Accident> allAccidents = repo.Accidents.ToList();
             IEnumerable<int> allHours = Enumerable.Range(0, 24);
-            IEnumerable<HistogramResult> histogramData = new List<HistogramResult>();
+            IEnumerable<DataResult> histogramData = new List<DataResult>();
 
             foreach (int hour in allHours)
             {
-                HistogramResult hr = new HistogramResult();
+                DataResult hr = new DataResult();
                 hr.XVar = hour.ToString();
                 hr.YVar = allAccidents.Where(x => x.Crash_DT.Hour == hour).Count();
                 histogramData = histogramData.Append(hr);
@@ -31,6 +31,30 @@ namespace Intex2.Controllers
 
             var googleChartData = histogramData.ToGoogleDataTable()
                 .NewColumn(new Column(ColumnType.String, "Hour"), x => x.XVar)
+                .NewColumn(new Column(ColumnType.Number, "Accidents"), x => x.YVar)
+                .Build()
+                .GetJson();
+
+            return Content(googleChartData);
+        }
+
+        public IActionResult PieChartData()
+        {
+            IEnumerable<Accident> allSevereAccidents = repo.Accidents.Where(x => x.Crash_Severity_Id >= 3).ToList();
+            IEnumerable<DataResult> pieChartData = new List<DataResult>();
+            pieChartData = pieChartData.Append(new DataResult
+            {
+                XVar = "DUI",
+                YVar = allSevereAccidents.Where(x => x.DUI).Count()
+            });
+            pieChartData = pieChartData.Append(new DataResult
+            {
+                XVar = "Non-DUI",
+                YVar = allSevereAccidents.Where(x => !x.DUI).Count()
+            });
+
+            var googleChartData = pieChartData.ToGoogleDataTable()
+                .NewColumn(new Column(ColumnType.String, "DUI"), x => x.XVar)
                 .NewColumn(new Column(ColumnType.Number, "Accidents"), x => x.YVar)
                 .Build()
                 .GetJson();
