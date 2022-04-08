@@ -310,3 +310,7 @@ input [type="checkbox"] {
 .iphone {
     width: 400px;
 }
+
+.width-95 {
+    width:85% !important;
+}
