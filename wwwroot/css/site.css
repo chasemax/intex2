@@ -289,3 +289,7 @@ filter-table-thtd {
     padding-left:2%
 }
 
+.google-chart {
+    width: 900px;
+    height: 500px;
+}
