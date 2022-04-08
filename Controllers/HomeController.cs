@@ -192,5 +192,10 @@ namespace Intex2.Controllers
             return View();
         }
 
+        public IActionResult Charts()
+        {
+            return View();
+        }
+
     }
 }

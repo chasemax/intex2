@@ -1,5 +1,8 @@
-﻿@model AccidentsViewModel
+﻿@{
+    ViewData["Title"] = "Search Page";
+}
 
+@model AccidentsViewModel
 <div>
     <div class="row m-0 p-0">
         <div class="col-3 filter-col">
@@ -20,15 +23,15 @@
                     <tbody>
                         @foreach (var c in Model.PageInfo.CountyFilterQueries)
                         {
-                            <tr class="filter-table-trtbody">
-                                <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCounty ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
-                            </tr>
+                        <tr class="filter-table-trtbody">
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCounty ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>
             </div>
 
-                <br />
+            <br />
 
             <div class="filter-table-div">
                 <table class="filter-table-table">
@@ -40,9 +43,9 @@
                     <tbody>
                         @foreach (var c in Model.PageInfo.CityFilterQueries)
                         {
-                            <tr class="filter-table-trtbody">
-                                <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
-                            </tr>
+                        <tr class="filter-table-trtbody">
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -60,9 +63,9 @@
                     <tbody>
                         @foreach (var c in Model.PageInfo.SeverityFilterQueries)
                         {
-                            <tr class="filter-table-trtbody">
-                                <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedSeverity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
-                            </tr>
+                        <tr class="filter-table-trtbody">
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedSeverity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -79,22 +82,22 @@
                 <div class="col-1">Severity</div>
             </div>
 
-                @foreach (var a in Model.Accidents)
+            @foreach (var a in Model.Accidents)
                 {
-                    <a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">
-                        <div class="row body-row">
-                            <div class="col-1 body-data truncate-text">@a.Crash_ID</div>
-                            <div class="col-4 body-data truncate-text">@a.Main_Road_Name</div>
-                            <div class="col-2 body-data truncate-text">@a.City</div>
-                            <div class="col-2 body-data truncate-text">@a.County_Name</div>
-                            <div class="col-2 body-data truncate-text">@a.Crash_DT</div>
-                            <div class="col-1 body-data truncate-text">@a.Crash_Severity_Id</div>
-                        </div>
-                    </a>
+            <a asp-controller="Home" asp-action="Accident" asp-route-id="@a.Crash_ID">
+                <div class="row body-row">
+                    <div class="col-1 body-data truncate-text">@a.Crash_ID</div>
+                    <div class="col-4 body-data truncate-text">@a.Main_Road_Name</div>
+                    <div class="col-2 body-data truncate-text">@a.City</div>
+                    <div class="col-2 body-data truncate-text">@a.County_Name</div>
+                    <div class="col-2 body-data truncate-text">@a.Crash_DT</div>
+                    <div class="col-1 body-data truncate-text">@a.Crash_Severity_Id</div>
+                </div>
+            </a>
                 }
 
-                <div page-model="@Model.PageInfo" page-action="Search" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-dark"
-                        page-classes-enabled="true" class="btn-group pull-right m-1"></div>
+            <div page-model="@Model.PageInfo" page-action="Search" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-dark"
+                 page-classes-enabled="true" class="btn-group pull-right m-1"></div>
         </div>
     </div>
 </div>

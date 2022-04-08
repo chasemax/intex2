@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Google.DataTable.Net.Wrapper.Extension;
+using Google.DataTable.Net.Wrapper;
 using Intex2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,15 +20,22 @@ namespace Intex2.Components
 
         public IViewComponentResult Invoke()
         {
-            Dictionary<int, Dictionary<int, DateTime>> data = new Dictionary<int, Dictionary<int, DateTime>>();
+            IQueryable<HistogramResult> results = repo.Accidents
+                .GroupBy(x => x.Crash_DT.Hour)
+                .Select(x => new HistogramResult
+                {
+                    XVar = x.Key.ToString(),
+                    YVar = x.Count(x => true)
+                })
+                .OrderBy(x => x.XVar);
 
-            foreach (var i in repo.Accidents)
-            {
-                data.Add(i.Crash_ID, new Dictionary<int, DateTime>());
-                data[i.Crash_ID].Add(i.Crash_Severity_Id, i.Crash_DT);
-            }
+            var googleChartData = results.ToGoogleDataTable()
+                .NewColumn(new Column(ColumnType.String, "Hour"), x => x.XVar)
+                .NewColumn(new Column(ColumnType.Number, "Accidents"), x => x.YVar)
+                .Build()
+                .GetJson();
 
-            return View(data);
+            return View(googleChartData);
         }
     }
 }
