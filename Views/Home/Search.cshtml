@@ -24,7 +24,7 @@
                         @foreach (var c in Model.PageInfo.CountyFilterQueries)
                         {
                         <tr class="filter-table-trtbody">
-                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCounty ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCounty ? "bg-primary text-white" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
                         </tr>
                         }
                     </tbody>
@@ -44,7 +44,7 @@
                         @foreach (var c in Model.PageInfo.CityFilterQueries)
                         {
                         <tr class="filter-table-trtbody">
-                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedCity ? "bg-primary text-white" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
                         </tr>
                         }
                     </tbody>
@@ -64,7 +64,7 @@
                         @foreach (var c in Model.PageInfo.SeverityFilterQueries)
                         {
                         <tr class="filter-table-trtbody">
-                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedSeverity ? "bg-primary" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
+                            <td class="filter-table-th @(c.Key == Model.PageInfo.SelectedSeverity ? "bg-primary text-white" : "")"><a asp-controller="Home" asp-action="Search" asp-all-route-data="@c.Value">@c.Key</a></td>
                         </tr>
                         }
                     </tbody>
