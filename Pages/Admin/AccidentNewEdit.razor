@@ -453,7 +453,7 @@
 
         int calculatedHour = ampm == "AM" ? hourSelected : hourSelected + 12;
         calculatedHour = calculatedHour == 24 ? 0 : calculatedHour;
-        accident.Crash_DT = new DateTime(accident.Crash_DT.Year, accident.Crash_DT.Month, accident.Crash_DT.Day, calculatedHour, minuteSelected, 0);
+        accident.Crash_DT = new DateTime(daySelected.Year, daySelected.Month, daySelected.Day, calculatedHour, minuteSelected, 0);
         if (Id == 0)
         {
             repo.AddAccident(accident);
