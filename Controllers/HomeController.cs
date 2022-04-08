@@ -187,9 +187,16 @@ namespace Intex2.Controllers
             return View(accident);
         }
 
+        [HttpGet]
         public IActionResult Severity()
         {
-            return View();
+            return View(new PredictionModel());
+        }
+
+        [HttpPost]
+        public IActionResult Severity(PredictionModel p)
+        {
+            return View(p);
         }
 
         public IActionResult Charts()

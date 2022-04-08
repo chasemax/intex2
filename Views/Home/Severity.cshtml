@@ -1,4 +1,212 @@
 ﻿@{ 
     ViewData["Title"] = "Severity Calculator";
 }
-<h1>Severity Calculator</h1>
+
+@model PredictionModel
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col text-body-column shadow-lg p-lg-5">
+            <div class="row">
+                <div class="col text-center">
+                    <h1>Severity Calculator</h1>
+                    <p>Explore how various factors are predicted to affect a car accident's severity</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Work Zone Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Work_Zone_Related" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Pedestrian Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Pedestrian_Involved" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Bicyclist Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Bicyclist_Involved" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Motorcycle Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Motorcycle_Involved" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Improper Restraint</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Improper_Restraint" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Unrestrained</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Unrestrained" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>DUI</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.DUI" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Intersection Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Intersection_Related" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Wild Animal Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Wild_Animal_Related" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Domestic Animal Related</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Domestic_Animal_Related" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Overturn / Rollover</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Overturn_Rollover" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Comm. Vehicle Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Commercial_Motor_Veh_Involved" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Teenage Driver Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Teenage_Driver_Involved" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Older Driver Involved</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Older_Driver_Involved" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Night / Dark Conditions</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Night_Dark_Condition" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Single Vehicle Collision</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Single_Vehicle" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Distracted Driving</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Distracted_Driving" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <label>Drowsy Driving</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Drowsy_Driving" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label>Roadway Departure</label>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-check form-switch">
+                                    <input type="checkbox" class="form-check-input" asp-for="@Model.Roadway_Departure" />
+                                </div>
+                            </div>
+                            <div class="col-6"></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-success">Predict Crash Severity</button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col text-center">
+                                <span class="badge bg-info">Predicted Crash Severity: </span>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
