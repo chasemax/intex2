@@ -92,8 +92,8 @@ namespace Intex2
                 options.Password.RequiredUniqueChars = 1;
             });
 
-            services.AddSingleton<InferenceSession>(
-                new InferenceSession("crashlessutah.onnx"));
+            /*services.AddSingleton<InferenceSession>(
+                new InferenceSession("crashlessutah.onnx"));*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
