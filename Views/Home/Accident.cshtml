@@ -3,17 +3,11 @@
     ViewData["Title"] = "Accident Details"; 
 }
 
-<div class="container w-75">
+<div class="container width-85">
     <div class="row">
         <div class="col">
-            <div class="padding-accident">
+            <div>
                 <div class="bg-light p-1">
-
-                    <h2>ACCIDENT #@Model.Crash_ID </h2>
-                    <p>
-                        <b>Date and Time of Accident:</b> @Model.Crash_DT
-                    </p>
-
                     @if (@Model.Crash_Severity_Id == 1 | @Model.Crash_Severity_Id == 2)
                     {
                         <p class="badge bg-info float-right">
@@ -36,14 +30,20 @@
                     <p class="badge bg-info float-right">
                         Predicted Severity: @ViewBag.predictedSeverity
                     </p>
+                    <h2>ACCIDENT #@Model.Crash_ID </h2>
+                    <p>
+                        <b>Date and Time of Accident:</b> @Model.Crash_DT
+                    </p>
+
+
 
                 </div>
             </div>
         </div>
     </div>
-
+    <br />
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <p><b>Main Road Name:</b></p>
             <p><b>City:</b></p>
             <p><b>County Name:</b></p>
@@ -54,7 +54,7 @@
             <br />
             <a class="btn btn-primary" href="/admin/edit-accident/@Model.Crash_ID">Edit Accident Details</a>
         </div>
-        <div class="col-5">
+        <div class="col m-0 p-0">
             <p>@Model.Main_Road_Name</p>
             <p>@Model.City</p>
             <p>@Model.County_Name</p>
@@ -63,11 +63,11 @@
             <p>@Model.Latitude</p>
             <p>@Model.Longitude</p>
         </div>
-        <div class="col-4">
+        <div class="col m-0 p-0">
             <img src="@ViewBag.mapsUrl" />
         </div>
     </div>
-
+    <br />
     <div class="row">
         <div class="col">
             <h2>Conditions</h2>
@@ -75,178 +75,264 @@
     </div>
 
     <div class="row">
-        <div class="col-2">
+        <div class="col m-0">
             @if (Model.Work_Zone_Related == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Work Zone Related" />
+            <label>
+                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Work Zone Related
+            </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Work Zone Related" />
+            <label>
+                <input type="checkbox" disabled="disabled" /> Work Zone Related
+            </label>
             }
-
+            <br />
             @if (Model.Pedestrian_Involved == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Pedestrian Involved" />
+            <label>
+                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Pedestrian Involved
+            </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Pedestrian Involved" />
+        <label>
+            <input type="checkbox" disabled="disabled" /> Pedestrian Involved
+        </label>
             }
-
+            <br />
             @if (Model.Bicyclist_Involved == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Bicyclist Involved" />
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Bicyclist Involved
+        </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Bicyclist Involved" />
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Bicyclist Involved
+        </label>
             }
-
+            <br />
             @if (Model.Motorcycle_Involved == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Motorcycle Involved" />
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue"  /> Motorcycle Involved
+        </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Motorcycle Involved" />
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Motorcycle Involved
+        </label>
             }
+            <br />
         </div>
-        <div class="col-2">
+        <div class="col m-0">
             @if (Model.Unrestrained == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Unrestrained" />
+            <label>
+                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Unrestrained
+            </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Unrestrained" />
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Unrestrained
+        </label>
             }
+            <br />
             @if (Model.DUI == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="DUI" />
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue"  /> DUI
+        </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="DUI" />
+        <label>
+            <input type="checkbox" disabled="disabled" /> DUI
+        </label>
             }
+            <br />
             @if (Model.Intersection_Related == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Intersection" />
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Intersection
+        </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Intersection" />
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Intersection
+        </label>
             }
+            <br />
             @if (Model.Improper_Restraint == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Improper Restraint" />
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue"  /> Improper Restraint
+        </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Improper Restraint" />
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Improper Restraint
+        </label>
             }
+            <br />
         </div>
-        <div class="col-2">
+        <div class="col m-0">
             @if (Model.Overturn_Rollover == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Overturn Rollover" />
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Overturn Rollover
+                </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Overturn Rollover" />
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Overturn Rollover
+                </label>
             }
-            @if (Model.Commercial_Motor_Veh_Involved == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Commercial Vehicle Involved" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Commerical Vehicle Involved" />
-            }
-            @if (Model.Wild_Animal_Related == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Wild Animal Related" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Wild Animal Related" />
-            }
-            @if (Model.Domestic_Animal_Related == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Domestic Animal Related" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Domestic Animal Related" />
-            }
-        </div>
-        <div class="col-2">
-            @if (Model.Single_Vehicle == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Single Vehicle" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Single Vehicle" />
-            }
-            @if (Model.Teenage_Driver_Involved == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Teenage Driver Involved" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Teenage Driver Involved" />
-            }
-
-            @if (Model.Older_Driver_Involved == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Older Driver Involved" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Older Driver Involved" />
-            }
-
-            @if (Model.Night_Dark_Condition == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Night/Dark Conditions" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Night/Dark Conditions" />
-            }
-        </div>
-        <div class="col-2">
-            @if (Model.Distracted_Driving == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Distracted Driving" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Distracted Driving" />
-            }
-
-            @if (Model.Drowsy_Driving == true)
-            {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Drowsy Driving" />
-            }
-            else
-            {
-                <input type="checkbox" disabled="disabled" value="Drowsy Driving" />
-            }
-
+            <br />
             @if (Model.Roadway_Departure == true)
             {
-                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" value="Roadway Departure" />
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Roadway Departure
+                </label>
             }
             else
             {
-                <input type="checkbox" disabled="disabled" value="Roadway Departure" />
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Roadway Departure
+                </label>
             }
+            <br />
+            @if (Model.Wild_Animal_Related == true)
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Wild Animal Related
+                </label>
+            }
+            else
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Wild Animal Related
+                </label>
+            }
+            <br />
+            @if (Model.Drowsy_Driving == true)
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Drowsy Driving
+                </label>
+            }
+            else
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Drowsy Driving
+                </label>
+            }
+            <br />
         </div>
-        <div class="col-2">
-
+        <div class="col m-0">
+            @if (Model.Single_Vehicle == true)
+            {
+            <label>
+                <input type="checkbox" disabled="disabled" checked="checked" class="color-blue"  /> Single Vehicle
+            </label>
+            }
+            else
+            {
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Single Vehicle
+        </label>
+            }
+            <br />
+            @if (Model.Teenage_Driver_Involved == true)
+            {
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Teenage Driver Involved
+        </label>
+            }
+            else
+            {
+        <label>
+            <input type="checkbox" disabled="disabled" /> Teenage Driver Involved
+        </label>
+            }
+            <br />
+            @if (Model.Older_Driver_Involved == true)
+            {
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue"  /> Older Driver Involved
+        </label>
+            }
+            else
+            {
+        <label>
+            <input type="checkbox" disabled="disabled"  /> Older Driver Involved
+        </label>
+            }
+            <br />
+            @if (Model.Night_Dark_Condition == true)
+            {
+        <label>
+            <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Night/Dark Conditions
+        </label>
+            }
+            else
+            {
+        <label>
+            <input type="checkbox" disabled="disabled" /> Night/Dark Conditions
+        </label>
+            }
+            <br />
         </div>
+        <div class="col-3 m-0">
+            @if (Model.Distracted_Driving == true)
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Distracted Driving
+                </label>
+            }
+            else
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Distracted Driving
+                </label>
+            }
+            <br />
+            @if (Model.Domestic_Animal_Related == true)
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Domestic Animal Related
+                </label>
+            }
+            else
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Domestic Animal Related
+                </label>
+            }
+            <br />
+            @if (Model.Commercial_Motor_Veh_Involved == true)
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Commercial Vehicle Involved
+                </label>
+            }
+            else
+            {
+                <label>
+                    <input type="checkbox" disabled="disabled" /> Commercial Vehicle Involved
+                </label>
+            }
+            <br />
+        </div>
+       
     </div>
 </div>
 

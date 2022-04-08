@@ -144,7 +144,7 @@ namespace Intex2.Controllers
             ViewBag.mapsUrl = "https://maps.googleapis.com/maps/api/staticmap?center="
                 + accident.Latitude.ToString() + ","
                 + accident.Longitude.ToString()
-                + "&zoom=16&size=500x400&maptype=roadmap&markers=color:red%7C"
+                + "&zoom=16&size=450x350&maptype=roadmap&markers=color:red%7C"
                 + accident.Latitude.ToString() + ","
                 + accident.Longitude.ToString()
                 + "&key=" + Configuration["GoogleAPIKey"];
