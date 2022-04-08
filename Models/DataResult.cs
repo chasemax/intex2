@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Intex2.Models
 {
-    public class HistogramResult
+    public class DataResult
     {
         public string XVar { get; set; }
         public int YVar { get; set; }

@@ -2,13 +2,32 @@
     ViewData["Title"] = "Interactive Charts"; 
 }
 
-<div id="chart_div" class="google-chart"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 text-body-column">
+            <div class="row mb-3">
+                <div class="col text-center">
+                    <h1>Charts</h1>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div id="chart_div" class="google-chart"></div>
+            </div>
+            <div class="row mb-3">
+                <div id="chart_div_2" class="google-chart"></div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
 
 @section Scripts
 {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">google.charts.load("current", { packages: ["corechart"] });
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var jsonData = $.ajax({
@@ -28,5 +47,23 @@
 
             var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
             chart.draw(data, options);
-        }</script>
+
+            var jsonData2 = $.ajax({
+                url: "/api/piechartdata",
+                dataType: "json",
+                async: false
+            }).responseText;
+
+            // Create our data table out of JSON data loaded from server.
+            var data2 = new google.visualization.DataTable(jsonData2);
+
+            var options2 = {
+                title: 'Percentage of High-Severity (3-5) Crashes involving DUI',
+            };
+
+            var chart2 = new google.visualization.PieChart(document.getElementById('chart_div_2'));
+            chart2.draw(data2, options2);
+        }
+    </script>
+
 }

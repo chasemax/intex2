@@ -302,6 +302,8 @@ input [type="checkbox"] {
 .google-chart {
     width: 900px;
     height: 500px;
+    border-style: solid;
+    border-width: 3px;
 }/*MFA Pics*/
 .google-auth {
     width: 200px;
