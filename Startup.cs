@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.ML.OnnxRuntime;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Intex2
 {
@@ -37,6 +38,13 @@ namespace Intex2
                 options.CheckConsentNeeded = context => true;
                 // requires using Microsoft.AspNetCore.Http;
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            });
+
+            // The TempData provider cookie is not essential. Make it essential
+            // so TempData is functional when tracking is disabled.
+            services.Configure<CookieTempDataProviderOptions>(options => 
+            {
+                options.Cookie.IsEssential = true;
             });
 
             services.AddControllersWithViews();
@@ -98,7 +106,6 @@ namespace Intex2
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            //*************************************************************************************************
             app.UseCookiePolicy();
 
 
