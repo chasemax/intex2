@@ -79,34 +79,185 @@
     <br>
     <div class="row">
         <div class="col">
-            <div class="padding-conditions">
+            <div>
                 <h2 >Conditions</h2>
 
-                <span class="checkboxes">Work Zone Related</span> @Html.CheckBox("Work_Zone_Related", Model.Work_Zone_Related, new { @disabled = "disabled" })
-                <span class="checkboxes">Pedestrian Involved</span> @Html.CheckBox("Pedestrian", Model.Pedestrian_Involved, new { @disabled = "disabled" })
-                <span class="checkboxes">Bicyclist Involved</span> @Html.CheckBox("Bicyclist_Involved", Model.Bicyclist_Involved, new { @disabled = "disabled" })
-                <span class="checkboxes">Motorcycle Involved</span> @Html.CheckBox("Motorcycle_Involved", Model.Motorcycle_Involved, new { @disabled = "disabled" })
-                <span class="checkboxes">Improper Restraint</span> @Html.CheckBox("Improper_Restraint", Model.Improper_Restraint, new { @disabled = "disabled" })
-                <span class="checkboxes">Unrestrained</span> @Html.CheckBox("Unrestrained", Model.Unrestrained, new { @disabled = "disabled" })
-                <span class="checkboxes">DUI</span> @Html.CheckBox("DUI", Model.DUI, new { @disabled = "disabled" })
-                <span class="checkboxes">Intersection_Related</span> @Html.CheckBox("Intersection_Related", Model.Intersection_Related, new { @disabled = "disabled" })
-                <span class="checkboxes">Wild Animal Related</span> @Html.CheckBox("Wild_Animal_Related", Model.Wild_Animal_Related, new { @disabled = "disabled" })
-                <span class="checkboxes">Domestic Animal Related</span> @Html.CheckBox("Domestic_Animal_Related", Model.Domestic_Animal_Related, new { @disabled = "disabled" })
-                <span class="checkboxes">Overturn Rollover</span> @Html.CheckBox("Overturn_Rollover", Model.Overturn_Rollover, new { @disabled = "disabled" })
-                <span class="checkboxes">Commercial Motor Vehicle Involved</span> @Html.CheckBox("Commercial_Motor_Veh_Involved", Model.Commercial_Motor_Veh_Involved, new { @disabled = "disabled" })
-                <span class="checkboxes">Teenage Driver Involved</span> @Html.CheckBox("Teenage_Driver_Involved", Model.Teenage_Driver_Involved, new { @disabled = "disabled" })
-                <span class="checkboxes">Older Driver Involved</span> @Html.CheckBox("Older_Driver_Involved", Model.Older_Driver_Involved, new { @disabled = "disabled" })
-                <span class="checkboxes">Night Dark Condition</span> @Html.CheckBox("Night_Dark_Condition", Model.Night_Dark_Condition, new { @disabled = "disabled" })
-                <span class="checkboxes">Single Vehicle</span> @Html.CheckBox("Single_Vehicle", Model.Single_Vehicle, new { @disabled = "disabled" })
-                <span class="checkboxes">Distracted Driving</span> @Html.CheckBox("Distracted_Driving", Model.Distracted_Driving, new { @disabled = "disabled" })
-                <span class="checkboxes">Drowsy Driving</span> @Html.CheckBox("Drowsy_Driving", Model.Drowsy_Driving, new { @disabled = "disabled" })
-                <span class="checkboxes">Roadway Departure</span> @Html.CheckBox("Roadway_Departure", Model.Roadway_Departure, new { @disabled = "disabled" })
+                <table>
+                    <tr>
+                        @if (Model.Work_Zone_Related == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue"  /> Work Zone Related </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled"  /> Work Zone Related </td>
+                        }
+
+                        @if (Model.Pedestrian_Involved == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue"/> Pedestrian Involved </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Pedestrian Involved </td>
+                        }
+
+                        @if (Model.Bicyclist_Involved == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Bicyclist Involved </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" />  Bicyclist Involved </td>
+                        }
+
+                        @if (Model.Motorcycle_Involved == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Motorcycle Involved </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Motorcycle Involved </td>
+                        }
+
+                        @if (Model.Improper_Restraint == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Improper Restraint </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Improper Restraint </td>
+                        }
+                    </tr>
+                    <tr>
+                        @if (Model.Unrestrained == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Unrestrained </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Unrestrained </td>
+                        }
+                        @if (Model.DUI == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> DUI </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> DUI </td>
+                        }
+                        @if (Model.Intersection_Related == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Intersection </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Intersection </td>
+                        }
+                        @if (Model.Wild_Animal_Related == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Wild Animal Related </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Wild Animal Related </td>
+                        }
+                        @if (Model.Domestic_Animal_Related == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Domestic Animal Related </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Domestic Animal Related </td>
+                        }
+                    </tr>
+                    <tr>
+                        @if (Model.Overturn_Rollover == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Overturn Rollover </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Overturn Rollover</td>
+                        }
+                        @if (Model.Commercial_Motor_Veh_Involved == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Commercial Vehicle Involved</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Commerical Vehicle Involved</td>
+                        }
+                        @if (Model.Teenage_Driver_Involved == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue"/> Teenage Driver Involved</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Teenage Driver Involved</td>
+                        }
+
+                        @if (Model.Older_Driver_Involved == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Older Driver Involved</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Older Driver Involved</td>
+                        }
+
+                        @if (Model.Night_Dark_Condition == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Night/Dark Conditions</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Night/Dark Conditions</td>
+                        }
+                    </tr>
+                    <tr>
+                        @if (Model.Single_Vehicle == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Single Vehicle</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Single Vehicle</td>
+                        }
+
+                        @if (Model.Distracted_Driving == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Distracted Driving</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Distracted Driving</td>
+                        }
+
+                        @if (Model.Drowsy_Driving == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Drowsy Driving </td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Drowsy Driving </td>
+                        }
+
+                        @if (Model.Roadway_Departure == true)
+                        {
+                            <td><input type="checkbox" disabled="disabled" checked="checked" class="color-blue" /> Roadway Departure</td>
+                        }
+                        else
+                        {
+                            <td><input type="checkbox" disabled="disabled" /> Roadway Departure</td>
+                        }
+                    </tr>
+                </table>
 
             </div>
         </div>
     </div>
 </div>
-
 
 
 

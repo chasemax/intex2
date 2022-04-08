@@ -274,10 +274,9 @@ filter-table-thtd {
     padding-right: 1%;
 }
 
-.padding-conditions {
-    padding-left: 1%;
-    padding-right: 1%;
-    text-align: center
+.align-conditions {
+    padding-left: 15%;
+    padding-right: 15%
 }
 
 .float-right {
@@ -285,8 +284,15 @@ filter-table-thtd {
     font-size: 20px
 }
 
-.checkboxes {
-    padding-left:2%
+
+
+.color-blue {
+    color: blue;
+    
+}
+
+input [type="checkbox"] {
+    background-color: blue;
 }
 
 .google-chart {
