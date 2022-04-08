@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Intex2.Models.ViewModels;
+using System.Collections.Generic;
 
 namespace Intex2.Infrastructure
 {
@@ -59,7 +60,16 @@ namespace Intex2.Infrastructure
             //}
             TagBuilder first = new TagBuilder("a");
 
-            first.Attributes["href"] = uh.Action(PageAction, new { pageNum = 1 });
+            Dictionary<string, string> queryParams = new Dictionary<string, string>
+                {
+                    { "city", PageModel.SelectedCity },
+                    { "county", PageModel.SelectedCounty },
+                    { "severity", PageModel.SelectedSeverity },
+                    { "pageNum", "1" },
+                    { "searchText", PageModel.CurrentSearchQuery }
+                };
+
+            first.Attributes["href"] = uh.Action(PageAction, queryParams);
 
             if (PageClassesEnabled)
             {
@@ -84,7 +94,16 @@ namespace Intex2.Infrastructure
                 }
                 TagBuilder tb = new TagBuilder("a");
 
-                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                queryParams = new Dictionary<string, string>
+                {
+                    { "city", PageModel.SelectedCity },
+                    { "county", PageModel.SelectedCounty },
+                    { "severity", PageModel.SelectedSeverity },
+                    { "pageNum", i.ToString() },
+                    { "searchText", PageModel.CurrentSearchQuery }
+                };
+
+                tb.Attributes["href"] = uh.Action(PageAction, queryParams);
 
                 if (PageClassesEnabled)
                 {
@@ -100,7 +119,16 @@ namespace Intex2.Infrastructure
 
             TagBuilder last = new TagBuilder("a");
 
-            last.Attributes["href"] = uh.Action(PageAction, new { pageNum = PageModel.TotalPages });
+            queryParams = new Dictionary<string, string>
+                {
+                    { "city", PageModel.SelectedCity },
+                    { "county", PageModel.SelectedCounty },
+                    { "severity", PageModel.SelectedSeverity },
+                    { "pageNum", PageModel.TotalPages.ToString() },
+                    { "searchText", PageModel.CurrentSearchQuery }
+                };
+
+            last.Attributes["href"] = uh.Action(PageAction, queryParams);
 
             if (PageClassesEnabled)
             {

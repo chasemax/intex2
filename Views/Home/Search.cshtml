@@ -3,7 +3,13 @@
 <div>
     <div class="row m-0 p-0">
         <div class="col-3 filter-col">
-            <h2>Filtering</h2>
+            <h2>Search by ID / Road Name</h2>
+            <form method="post" class="input-group mt-3">
+                <input class="form-control" name="searchText" value="@Model.PageInfo.CurrentSearchQuery" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <br />
+            <h2>Filter</h2>
             <div class="filter-table-div">
                 <table class="filter-table-table">
                     <thead class="filter-table-thead">
@@ -61,7 +67,7 @@
                     </tbody>
                 </table>
             </div>
-            <a asp-controller="Home" asp-action="Search" class="btn btn-lg btn-outline-primary align-self-center mt-3">Clear Filters</a>
+            <a asp-controller="Home" asp-action="Search" class="btn btn-lg btn-outline-primary align-self-center mt-3">Clear Search</a>
         </div>
         <div class="col m-0 p-0 list-col">
             <div class="row head-row">

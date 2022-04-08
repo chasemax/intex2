@@ -13,6 +13,7 @@ using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using Microsoft.AspNetCore.Http;
+using Microsoft.ML.OnnxRuntime;
 
 namespace Intex2
 {
@@ -82,6 +83,9 @@ namespace Intex2
                 options.Password.RequiredLength = 6; // Change this before deployment
                 options.Password.RequiredUniqueChars = 1;
             });
+
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("crashlessutah.onnx"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,7 +108,10 @@ namespace Intex2
 
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';img-src 'self' data: https://maps.googleapis.com;style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='");
+                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';" +
+                    "img-src 'self' data: https://maps.googleapis.com;style-src 'self' 'unsafe-hashes' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='; " +
+                    "script-src-elem https://www.gstatic.com 'self' 'sha256-+9ui/rkR7K9AWG5Om71256blXtWZBgmrnU2zVco/M0s='; " +
+                    "style-src-elem https://www.gstatic.com 'self' 'sha256-aqNNdDLnnrDOnTNdkJpYlAxKVJtLt9CtFLklmInuUAE='");
                 await next();
             });
 

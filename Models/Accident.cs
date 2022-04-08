@@ -17,9 +17,13 @@ namespace Intex2.Models
         public Decimal MilePoint { get; set; }
         public Decimal Latitude { get; set; }
         public Decimal Longitude { get; set; }
+        [Required]
         public string Main_Road_Name { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public string County_Name { get; set; }
+        [Required]
         public int Crash_Severity_Id { get; set; }
         
         public bool Work_Zone_Related { get; set; }
